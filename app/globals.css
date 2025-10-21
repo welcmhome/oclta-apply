@@ -11,6 +11,11 @@
   font-display: swap;
 }
 
+/* Fallback for when custom font is not available */
+.oclta-title {
+  font-family: 'Tronica Mono', 'JetBrains Mono', 'Courier New', monospace;
+}
+
 @layer base {
   html {
     font-family: 'JetBrains Mono', monospace;
