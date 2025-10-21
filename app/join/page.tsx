@@ -59,7 +59,7 @@ export default function JoinPage() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [errors, setErrors] = useState<{[key: string]: string}>({})
 
-  const updateFormData = (field: keyof FormData, value: string | string[]) => {
+  const updateFormData = (field: keyof FormData, value: string | string[] | boolean) => {
     setFormData(prev => ({ ...prev, [field]: value }))
     // Clear error when user starts typing
     if (errors[field]) {
