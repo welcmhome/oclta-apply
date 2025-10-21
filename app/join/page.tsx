@@ -308,6 +308,7 @@ export default function JoinPage() {
                   if (files.length > 0) {
                     const file = files[0]
                     if (file) {
+                      // Directly update formData to avoid TypeScript issues
                       setFormData(prev => ({ ...prev, profilePhoto: file }))
                     }
                   }
