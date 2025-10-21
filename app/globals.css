@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'Tronica Mono';
+  src: url('/fonts/Tronica-Mono.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer base {
+  html {
+    font-family: 'JetBrains Mono', monospace;
+  }
+  
+  body {
+    @apply bg-oclta-white text-oclta-black;
+  }
+}
+
+@layer components {
+  .form-input {
+    @apply w-full bg-transparent border-0 border-b border-gray-300 focus:border-oclta-black focus:outline-none py-2 text-sm transition-colors;
+  }
+  
+  .form-label {
+    @apply text-sm font-medium text-oclta-black mb-1 block;
+  }
+  
+  .checkbox-item {
+    @apply flex items-center space-x-3 py-3 border-b border-gray-100 last:border-b-0;
+  }
+  
+  .checkbox-input {
+    @apply w-4 h-4 text-oclta-black bg-transparent border border-gray-300 rounded focus:ring-oclta-black focus:ring-2;
+  }
+  
+  .btn-primary {
+    @apply bg-oclta-black text-oclta-white px-8 py-3 text-sm font-medium hover:bg-gray-800 transition-colors;
+  }
+  
+  .step-indicator {
+    @apply text-xs uppercase tracking-wider text-gray-500;
+  }
+  
+  .step-active {
+    @apply text-oclta-black border-b border-oclta-black;
+  }
+  
+  .progress-circle {
+    @apply w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium transition-all duration-300;
+  }
+  
+  .progress-line {
+    @apply w-16 h-0.5 mx-2 transition-all duration-300;
+  }
+  
+  .oclta-title {
+    font-family: 'Tronica Mono', monospace;
+    font-size: 14px;
+    font-weight: normal;
+    letter-spacing: 0.5px;
+  }
+}
