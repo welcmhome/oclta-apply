@@ -306,7 +306,7 @@ export default function JoinPage() {
                   e.preventDefault()
                   const files = e.dataTransfer.files
                   if (files.length > 0) {
-                    handlePhotoUpload({ target: { files } })
+                    handlePhotoUpload({ target: { files } } as React.ChangeEvent<HTMLInputElement>)
                   }
                 }}
                 onDragOver={(e) => e.preventDefault()}
