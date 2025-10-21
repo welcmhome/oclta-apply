@@ -23,6 +23,20 @@ export async function POST(request: NextRequest) {
       )
     }
 
+    // Check if Supabase is configured
+    const isSupabaseConfigured = process.env.NEXT_PUBLIC_SUPABASE_URL && 
+      process.env.NEXT_PUBLIC_SUPABASE_URL !== 'https://placeholder.supabase.co'
+
+    if (!isSupabaseConfigured) {
+      // Return success response without database operations
+      console.log(`Application submitted for ${email} (Supabase not configured yet)`)
+      return NextResponse.json({
+        success: true,
+        waitlistCount: 103, // Default waitlist count
+        message: 'Application submitted successfully (database not configured yet)'
+      })
+    }
+
     // Check if email already exists
     const { data: existingApplication } = await supabaseAdmin
       .from('applications')
