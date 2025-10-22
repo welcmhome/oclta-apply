@@ -225,14 +225,21 @@ export default function JoinPage() {
                 type="date"
                 className={`form-input ${errors.dateOfBirth ? 'border-red-500' : ''}`}
                 value={formData.dateOfBirth}
-                onChange={(e) => updateFormData('dateOfBirth', e.target.value)}
-                onFocus={(e) => {
-                  // Clear auto-filled today's date in Safari
-                  const today = new Date().toISOString().split('T')[0]
-                  if (e.target.value === today) {
-                    e.target.value = ''
-                    updateFormData('dateOfBirth', '')
+                onChange={(e) => {
+                  console.log('Date onChange:', e.target.value)
+                  updateFormData('dateOfBirth', e.target.value)
+                }}
+                onBlur={(e) => {
+                  const target = e.target as HTMLInputElement
+                  console.log('Date onBlur:', target.value)
+                  if (target.value !== formData.dateOfBirth) {
+                    updateFormData('dateOfBirth', target.value)
                   }
+                }}
+                onInput={(e) => {
+                  const target = e.target as HTMLInputElement
+                  console.log('Date onInput:', target.value)
+                  updateFormData('dateOfBirth', target.value)
                 }}
                 required
               />
