@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useMemo } from 'react'
+import { useState, useEffect } from 'react'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 
 interface FormData {
@@ -102,10 +102,13 @@ export default function JoinPage() {
     // Check if date is valid
     if (isNaN(date.getTime())) return false
     
-    // Check if date is in the future (with some tolerance for timezone issues)
+    // Check if date is in the future (allow today's date for Safari compatibility)
     const today = new Date()
-    today.setHours(23, 59, 59, 999) // End of today
-    if (date > today) return false
+    const tomorrow = new Date(today)
+    tomorrow.setDate(tomorrow.getDate() + 1)
+    tomorrow.setHours(0, 0, 0, 0)
+    
+    if (date >= tomorrow) return false
     
     // Check if age is realistic (13-120 years old)
     const age = now.getFullYear() - date.getFullYear()
@@ -475,10 +478,23 @@ export default function JoinPage() {
     return Object.keys(newErrors).length === 0
   }
 
-  const canProceed = useMemo(() => {
+  const canProceed = () => {
     switch (currentStep) {
       case 0:
-        return formData.firstName && formData.lastName && formData.email && formData.dateOfBirth && validateEmail(formData.email) && validateDateOfBirth(formData.dateOfBirth)
+        const isValid = formData.firstName && formData.lastName && formData.email && formData.dateOfBirth && validateEmail(formData.email) && validateDateOfBirth(formData.dateOfBirth)
+        // Debug logging for Safari
+        if (typeof window !== 'undefined' && window.navigator.userAgent.includes('Safari') && !window.navigator.userAgent.includes('Chrome')) {
+          console.log('Safari Debug - canProceed step 0:', {
+            firstName: formData.firstName,
+            lastName: formData.lastName,
+            email: formData.email,
+            dateOfBirth: formData.dateOfBirth,
+            emailValid: validateEmail(formData.email),
+            dateValid: validateDateOfBirth(formData.dateOfBirth),
+            isValid
+          })
+        }
+        return isValid
       case 1:
         return formData.country && formData.city && formData.zipCode
       case 2:
@@ -488,7 +504,7 @@ export default function JoinPage() {
       default:
         return false
     }
-  }, [currentStep, formData.firstName, formData.lastName, formData.email, formData.dateOfBirth, formData.country, formData.city, formData.zipCode, formData.reasons.length])
+  }
 
   // Loading screen
   if (isLoading) {
@@ -605,7 +621,7 @@ export default function JoinPage() {
               {currentStep < STEPS.length - 1 ? (
                 <button
                   onClick={nextStep}
-                  disabled={!canProceed}
+                  disabled={!canProceed()}
                   className="btn-primary disabled:opacity-50 disabled:cursor-not-allowed w-full sm:w-auto"
                 >
                   Continue
@@ -613,7 +629,7 @@ export default function JoinPage() {
               ) : (
                 <button
                   onClick={handleSubmit}
-                  disabled={!canProceed || isSubmitting}
+                  disabled={!canProceed() || isSubmitting}
                   className="btn-primary disabled:opacity-50 disabled:cursor-not-allowed w-full sm:w-auto"
                 >
                   {isSubmitting ? 'Submitting...' : 'Submit'}
