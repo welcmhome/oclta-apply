@@ -486,11 +486,6 @@ export default function JoinPage() {
             <div className="w-3 h-3 bg-oclta-black rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
             <div className="w-3 h-3 bg-oclta-black rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
           </div>
-          
-          {/* Loading text */}
-          <div className="text-sm text-gray-600 font-mono animate-pulse">
-            Loading...
-          </div>
         </div>
       </div>
     )
