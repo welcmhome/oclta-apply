@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 
 interface FormData {
@@ -454,7 +454,7 @@ export default function JoinPage() {
     return Object.keys(newErrors).length === 0
   }
 
-  const canProceed = () => {
+  const canProceed = useMemo(() => {
     switch (currentStep) {
       case 0:
         return formData.firstName && formData.lastName && formData.email && formData.dateOfBirth && validateEmail(formData.email) && validateDateOfBirth(formData.dateOfBirth)
@@ -467,7 +467,7 @@ export default function JoinPage() {
       default:
         return false
     }
-  }
+  }, [currentStep, formData.firstName, formData.lastName, formData.email, formData.dateOfBirth, formData.country, formData.city, formData.zipCode, formData.reasons.length])
 
   // Loading screen
   if (isLoading) {
@@ -584,7 +584,7 @@ export default function JoinPage() {
               {currentStep < STEPS.length - 1 ? (
                 <button
                   onClick={nextStep}
-                  disabled={!canProceed()}
+                  disabled={!canProceed}
                   className="btn-primary disabled:opacity-50 disabled:cursor-not-allowed w-full sm:w-auto"
                 >
                   Continue
@@ -592,7 +592,7 @@ export default function JoinPage() {
               ) : (
                 <button
                   onClick={handleSubmit}
-                  disabled={!canProceed() || isSubmitting}
+                  disabled={!canProceed || isSubmitting}
                   className="btn-primary disabled:opacity-50 disabled:cursor-not-allowed w-full sm:w-auto"
                 >
                   {isSubmitting ? 'Submitting...' : 'Submit'}
