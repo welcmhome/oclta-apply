@@ -165,15 +165,16 @@ export default function JoinPage() {
 
       if (response.ok) {
         const result = await response.json()
-        // Redirect to success page with waitlist count
-        window.location.href = `/join/success?count=${result.waitlistCount}`
+        // Show loading for a moment before redirecting
+        setTimeout(() => {
+          window.location.href = `/join/success?count=${result.waitlistCount}`
+        }, 1500) // 1.5 seconds loading
       } else {
         throw new Error('Submission failed')
       }
     } catch (error) {
       console.error('Error submitting application:', error)
       alert('There was an error submitting your application. Please try again.')
-    } finally {
       setIsSubmitting(false)
     }
   }
@@ -517,10 +518,32 @@ export default function JoinPage() {
   if (isLoading) {
     return (
       <div className="min-h-screen bg-oclta-white flex flex-col items-center justify-center">
-            {/* OCLTA Title */}
-            <div className="loading-title text-oclta-black mb-8">
-              OCLTA
-            </div>
+        {/* OCLTA Title */}
+        <div className="loading-title text-oclta-black mb-8">
+          OCLTA
+        </div>
+        
+        {/* Loading Animation */}
+        <div className="flex flex-col items-center space-y-6">
+          {/* Animated dots */}
+          <div className="flex space-x-2">
+            <div className="w-3 h-3 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
+            <div className="w-3 h-3 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
+            <div className="w-3 h-3 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  // Submission loading screen
+  if (isSubmitting) {
+    return (
+      <div className="min-h-screen bg-oclta-white flex flex-col items-center justify-center">
+        {/* OCLTA Title */}
+        <div className="loading-title text-oclta-black mb-8">
+          OCLTA
+        </div>
         
         {/* Loading Animation */}
         <div className="flex flex-col items-center space-y-6">
