@@ -356,7 +356,14 @@ export default function JoinPage() {
                     type="text"
                     className="form-input"
                     value={formData.instagram}
-                    onChange={(e) => updateFormData('instagram', e.target.value)}
+                     onChange={(e) => {
+                       let value = e.target.value
+                       // Auto-add @ if user starts typing without it
+                       if (value && !value.startsWith('@')) {
+                         value = '@' + value
+                       }
+                       updateFormData('instagram', value)
+                     }}
                     placeholder="@yourusername"
                   />
                 </div>
