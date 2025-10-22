@@ -473,10 +473,10 @@ export default function JoinPage() {
   if (isLoading) {
     return (
       <div className="min-h-screen bg-oclta-white flex flex-col items-center justify-center">
-        {/* OCLTA Title */}
-        <div className="oclta-title text-oclta-black mb-8">
-          OCLTA
-        </div>
+            {/* OCLTA Title */}
+            <div className="loading-title text-oclta-black mb-8">
+              OCLTA
+            </div>
         
         {/* Loading Animation */}
         <div className="flex flex-col items-center space-y-6">

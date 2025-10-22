@@ -16,6 +16,11 @@
   font-family: 'Tronica Mono', 'JetBrains Mono', 'Courier New', monospace;
 }
 
+/* Loading screen title - only use custom font, no fallbacks */
+.loading-title {
+  font-family: 'Tronica Mono';
+}
+
 @layer base {
   html {
     font-family: 'JetBrains Mono', monospace;
