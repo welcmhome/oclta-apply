@@ -1,10 +1,6 @@
 'use client'
 
-import { useSearchParams } from 'next/navigation'
-
 export default function SuccessPage() {
-  const searchParams = useSearchParams()
-  const waitlistCount = searchParams.get('count') || '103'
 
   return (
     <div className="min-h-screen bg-oclta-white flex flex-col">
@@ -39,14 +35,9 @@ export default function SuccessPage() {
             You're on the waitlist
           </h1>
           
-          <p className="text-sm text-gray-600 mb-8">
+          <p className="text-sm text-gray-600 mb-12">
             We'll reach out as soon as access is ready.
           </p>
-
-          {/* Waitlist Count */}
-          <div className="text-xs text-gray-500 mb-12">
-            Currently {waitlistCount} people are waiting for access
-          </div>
 
           {/* Action Button */}
           <a
