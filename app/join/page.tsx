@@ -69,6 +69,17 @@ export default function JoinPage() {
     return () => clearTimeout(timer)
   }, [])
 
+  // Clear any auto-filled dates on mount (Safari fix)
+  useEffect(() => {
+    const today = new Date()
+    const todayStr = today.toISOString().split('T')[0]
+    
+    // If Safari auto-filled with today's date, clear it
+    if (formData.dateOfBirth === todayStr) {
+      setFormData(prev => ({ ...prev, dateOfBirth: '' }))
+    }
+  }, [])
+
   const updateFormData = (field: keyof FormData, value: string | string[] | boolean) => {
     setFormData(prev => ({ ...prev, [field]: value }))
     // Clear error when user starts typing
@@ -91,8 +102,10 @@ export default function JoinPage() {
     // Check if date is valid
     if (isNaN(date.getTime())) return false
     
-    // Check if date is in the future
-    if (date > now) return false
+    // Check if date is in the future (with some tolerance for timezone issues)
+    const today = new Date()
+    today.setHours(23, 59, 59, 999) // End of today
+    if (date > today) return false
     
     // Check if age is realistic (13-120 years old)
     const age = now.getFullYear() - date.getFullYear()
@@ -210,6 +223,14 @@ export default function JoinPage() {
                 className={`form-input ${errors.dateOfBirth ? 'border-red-500' : ''}`}
                 value={formData.dateOfBirth}
                 onChange={(e) => updateFormData('dateOfBirth', e.target.value)}
+                onFocus={(e) => {
+                  // Clear auto-filled today's date in Safari
+                  const today = new Date().toISOString().split('T')[0]
+                  if (e.target.value === today) {
+                    e.target.value = ''
+                    updateFormData('dateOfBirth', '')
+                  }
+                }}
                 required
               />
               {errors.dateOfBirth && <p className="text-red-500 text-sm mt-1">{errors.dateOfBirth}</p>}
