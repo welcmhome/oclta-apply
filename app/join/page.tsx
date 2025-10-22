@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 
 interface FormData {
@@ -58,6 +58,16 @@ export default function JoinPage() {
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [errors, setErrors] = useState<{[key: string]: string}>({})
+  const [isLoading, setIsLoading] = useState(true)
+
+  useEffect(() => {
+    // Simulate loading time for the cool effect
+    const timer = setTimeout(() => {
+      setIsLoading(false)
+    }, 1500) // 1.5 seconds loading
+
+    return () => clearTimeout(timer)
+  }, [])
 
   const updateFormData = (field: keyof FormData, value: string | string[] | boolean) => {
     setFormData(prev => ({ ...prev, [field]: value }))
@@ -450,6 +460,33 @@ export default function JoinPage() {
       default:
         return false
     }
+  }
+
+  // Loading screen
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-oclta-white flex flex-col items-center justify-center">
+        {/* OCLTA Title */}
+        <div className="oclta-title text-oclta-black mb-8">
+          OCLTA
+        </div>
+        
+        {/* Loading Animation */}
+        <div className="flex flex-col items-center space-y-6">
+          {/* Animated dots */}
+          <div className="flex space-x-2">
+            <div className="w-3 h-3 bg-oclta-black rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
+            <div className="w-3 h-3 bg-oclta-black rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
+            <div className="w-3 h-3 bg-oclta-black rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
+          </div>
+          
+          {/* Loading text */}
+          <div className="text-sm text-gray-600 font-mono animate-pulse">
+            Loading...
+          </div>
+        </div>
+      </div>
+    )
   }
 
   return (
