@@ -183,7 +183,7 @@ export default function JoinPage() {
     switch (currentStep) {
       case 0:
         return (
-          <div className="space-y-5 sm:space-y-6">
+          <div className="space-y-6">
             <div>
               <label className="form-label">First Name</label>
               <input
@@ -251,7 +251,7 @@ export default function JoinPage() {
       
       case 1:
         return (
-          <div className="space-y-5 sm:space-y-6">
+          <div className="space-y-6">
             <div>
               <label className="form-label">Country / Region</label>
               <select
@@ -298,7 +298,7 @@ export default function JoinPage() {
       
       case 2:
         return (
-          <div className="space-y-5 sm:space-y-6">
+          <div className="space-y-6">
             <div>
               <label className="form-label">Why do you want to join OCLTA?</label>
               <p className="text-sm text-gray-600 mb-4">Select all that apply</p>
@@ -590,14 +590,17 @@ export default function JoinPage() {
       </div>
 
       {/* Main Content */}
-      <div className="max-w-2xl mx-auto px-2 sm:px-6 py-2 sm:py-8 pt-8 sm:pt-16 flex-1">
-        <div className="flex">
-          {/* Left Side - Progress Circles with Connecting Lines */}
-          <div className="flex flex-col items-center mr-2 sm:mr-8 mt-12 sm:mt-20">
+      <div className="max-w-2xl mx-auto px-4 sm:px-6 py-4 sm:py-8 pt-12 sm:pt-16 flex-1">
+        {/* Mobile Layout */}
+        <div className="block sm:hidden">
+          <h1 className="text-xl font-medium mb-6">Request Access</h1>
+          
+          {/* Mobile Step Navigation */}
+          <div className="flex justify-center space-x-4 mb-8">
             {STEPS.map((step, index) => (
               <div key={index} className="flex flex-col items-center">
                 <div 
-                  className={`w-8 h-8 sm:w-6 sm:h-6 rounded-full border-2 flex items-center justify-center text-sm sm:text-xs font-medium transition-all duration-300 ${
+                  className={`w-8 h-8 rounded-full border-2 flex items-center justify-center text-sm font-medium transition-all duration-300 ${
                     index <= currentStep 
                       ? 'bg-oclta-black border-oclta-black text-white' 
                       : 'border-gray-300 text-gray-400'
@@ -605,67 +608,131 @@ export default function JoinPage() {
                 >
                   {index + 1}
                 </div>
-                {index < STEPS.length - 1 && (
-                  <div 
-                    className={`w-0.5 h-10 sm:h-10 my-2 transition-all duration-300 ${
-                      index < currentStep ? 'bg-oclta-black' : 'bg-gray-300'
-                    }`}
-                  />
-                )}
+                <span className={`text-xs mt-1 ${index === currentStep ? 'text-oclta-black font-medium' : 'text-gray-500'}`}>
+                  {step}
+                </span>
               </div>
             ))}
           </div>
+        </div>
 
-          {/* Right Side - Form Content */}
-          <div className="flex-1">
-            <h1 className="text-2xl sm:text-2xl font-medium mb-3 sm:mb-8">Request Access</h1>
-            
-            {/* Horizontal Step Navigation - Hidden on mobile, shown on desktop */}
-            <div className="hidden sm:flex space-x-8 mb-8">
+        {/* Desktop Layout */}
+        <div className="hidden sm:block">
+          <div className="flex">
+            {/* Left Side - Progress Circles with Connecting Lines */}
+            <div className="flex flex-col items-center mr-8 mt-20">
               {STEPS.map((step, index) => (
-                <div key={index} className="flex flex-col items-center min-w-0 flex-shrink-0">
-                  <span className={`text-sm font-medium whitespace-nowrap ${index === currentStep ? 'text-oclta-black' : 'text-gray-500'}`}>
-                    {step}
-                  </span>
-                  <div className={`h-0.5 w-full mt-1 ${index === currentStep ? 'bg-oclta-black' : 'bg-transparent'}`}></div>
+                <div key={index} className="flex flex-col items-center">
+                  <div 
+                    className={`w-6 h-6 rounded-full border-2 flex items-center justify-center text-xs font-medium transition-all duration-300 ${
+                      index <= currentStep 
+                        ? 'bg-oclta-black border-oclta-black text-white' 
+                        : 'border-gray-300 text-gray-400'
+                    }`}
+                  >
+                    {index + 1}
+                  </div>
+                  {index < STEPS.length - 1 && (
+                    <div 
+                      className={`w-0.5 h-10 my-2 transition-all duration-300 ${
+                        index < currentStep ? 'bg-oclta-black' : 'bg-gray-300'
+                      }`}
+                    />
+                  )}
                 </div>
               ))}
             </div>
 
-            {/* Form Content */}
-            <div className="mb-2 sm:mb-6">
-              {renderStepContent()}
-            </div>
+            {/* Right Side - Form Content */}
+            <div className="flex-1">
+              <h1 className="text-2xl font-medium mb-8">Request Access</h1>
+              
+              {/* Horizontal Step Navigation */}
+              <div className="flex space-x-8 mb-8">
+                {STEPS.map((step, index) => (
+                  <div key={index} className="flex flex-col items-center min-w-0 flex-shrink-0">
+                    <span className={`text-sm font-medium whitespace-nowrap ${index === currentStep ? 'text-oclta-black' : 'text-gray-500'}`}>
+                      {step}
+                    </span>
+                    <div className={`h-0.5 w-full mt-1 ${index === currentStep ? 'bg-oclta-black' : 'bg-transparent'}`}></div>
+                  </div>
+                ))}
+              </div>
 
-            {/* Navigation Buttons */}
-            <div className="flex flex-col sm:flex-row justify-between gap-4 sm:gap-0">
+              {/* Form Content */}
+              <div className="mb-6">
+                {renderStepContent()}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Mobile Form Content */}
+        <div className="block sm:hidden">
+          <div className="mb-6">
+            {renderStepContent()}
+          </div>
+          
+          {/* Mobile Navigation Buttons */}
+          <div className="flex flex-col justify-between gap-4">
+            <button
+              onClick={prevStep}
+              disabled={currentStep === 0}
+              className="flex items-center justify-center space-x-2 text-sm font-medium text-gray-500 hover:text-oclta-black disabled:opacity-50 disabled:cursor-not-allowed w-full"
+            >
+              <ChevronLeft className="w-4 h-4" />
+              <span>Back</span>
+            </button>
+
+            {currentStep < STEPS.length - 1 ? (
               <button
-                onClick={prevStep}
-                disabled={currentStep === 0}
-                className="flex items-center justify-center sm:justify-start space-x-2 text-sm font-medium text-gray-500 hover:text-oclta-black disabled:opacity-50 disabled:cursor-not-allowed w-full sm:w-auto"
+                onClick={nextStep}
+                disabled={!canProceed()}
+                className="btn-primary disabled:opacity-50 disabled:cursor-not-allowed w-full"
               >
-                <ChevronLeft className="w-4 h-4" />
-                <span>Back</span>
+                Continue
               </button>
+            ) : (
+              <button
+                onClick={handleSubmit}
+                disabled={!canProceed() || isSubmitting}
+                className="btn-primary disabled:opacity-50 disabled:cursor-not-allowed w-full"
+              >
+                {isSubmitting ? 'Submitting...' : 'Submit'}
+              </button>
+            )}
+          </div>
+        </div>
 
-              {currentStep < STEPS.length - 1 ? (
-                <button
-                  onClick={nextStep}
-                  disabled={!canProceed()}
-                  className="btn-primary disabled:opacity-50 disabled:cursor-not-allowed w-full sm:w-auto"
-                >
-                  Continue
-                </button>
-              ) : (
-                <button
-                  onClick={handleSubmit}
-                  disabled={!canProceed() || isSubmitting}
-                  className="btn-primary disabled:opacity-50 disabled:cursor-not-allowed w-full sm:w-auto"
-                >
-                  {isSubmitting ? 'Submitting...' : 'Submit'}
-                </button>
-              )}
-            </div>
+        {/* Desktop Navigation Buttons */}
+        <div className="hidden sm:block">
+          <div className="flex flex-row justify-between gap-4">
+            <button
+              onClick={prevStep}
+              disabled={currentStep === 0}
+              className="flex items-center justify-center sm:justify-start space-x-2 text-sm font-medium text-gray-500 hover:text-oclta-black disabled:opacity-50 disabled:cursor-not-allowed w-full sm:w-auto"
+            >
+              <ChevronLeft className="w-4 h-4" />
+              <span>Back</span>
+            </button>
+
+            {currentStep < STEPS.length - 1 ? (
+              <button
+                onClick={nextStep}
+                disabled={!canProceed()}
+                className="btn-primary disabled:opacity-50 disabled:cursor-not-allowed w-full sm:w-auto"
+              >
+                Continue
+              </button>
+            ) : (
+              <button
+                onClick={handleSubmit}
+                disabled={!canProceed() || isSubmitting}
+                className="btn-primary disabled:opacity-50 disabled:cursor-not-allowed w-full sm:w-auto"
+              >
+                {isSubmitting ? 'Submitting...' : 'Submit'}
+              </button>
+            )}
           </div>
         </div>
       </div>
