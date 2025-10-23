@@ -334,7 +334,7 @@ export default function JoinPage() {
       
       case 3:
         return (
-          <div className="w-full space-y-8">
+          <div className="w-full space-y-6">
             {/* Profile Photo Upload */}
             <div>
               <label className="form-label">Profile Photo (Optional)</label>
@@ -590,7 +590,7 @@ export default function JoinPage() {
       </div>
 
       {/* Main Content */}
-      <div className="max-w-2xl mx-auto px-2 sm:px-6 py-4 sm:py-8 pt-20 sm:pt-16 flex-1">
+      <div className="w-full max-w-2xl mx-auto px-2 sm:px-6 py-4 sm:py-8 pt-20 sm:pt-16 flex-1">
         {/* Mobile Layout */}
         <div className="block sm:hidden">
           <h1 className="text-xl font-medium mb-6">Request Access</h1>
@@ -673,8 +673,8 @@ export default function JoinPage() {
 
         {/* Mobile Form Content */}
         <div className="block sm:hidden">
-          <div className="w-full mb-8">
-            <div className="w-full">
+          <div className="w-full max-w-full mb-8">
+            <div className="w-full max-w-full">
               {renderStepContent()}
             </div>
           </div>
