@@ -596,9 +596,9 @@ export default function JoinPage() {
           <h1 className="text-xl font-medium mb-6">Request Access</h1>
           
           {/* Mobile Step Navigation */}
-          <div className="flex justify-center space-x-4 mb-8">
+          <div className="flex justify-center items-center space-x-2 mb-8">
             {STEPS.map((step, index) => (
-              <div key={index} className="flex flex-col items-center">
+              <div key={index} className="flex items-center">
                 <div 
                   className={`w-8 h-8 rounded-full border-2 flex items-center justify-center text-sm font-medium transition-all duration-300 ${
                     index <= currentStep 
@@ -608,9 +608,13 @@ export default function JoinPage() {
                 >
                   {index + 1}
                 </div>
-                <span className={`text-xs mt-1 ${index === currentStep ? 'text-oclta-black font-medium' : 'text-gray-500'}`}>
-                  {step}
-                </span>
+                {index < STEPS.length - 1 && (
+                  <div 
+                    className={`w-8 h-0.5 mx-2 transition-all duration-300 ${
+                      index < currentStep ? 'bg-oclta-black' : 'bg-gray-300'
+                    }`}
+                  />
+                )}
               </div>
             ))}
           </div>
