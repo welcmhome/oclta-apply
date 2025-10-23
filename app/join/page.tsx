@@ -183,7 +183,7 @@ export default function JoinPage() {
     switch (currentStep) {
       case 0:
         return (
-          <div className="space-y-6">
+          <div className="w-full space-y-6">
             <div>
               <label className="form-label">First Name</label>
               <input
@@ -251,7 +251,7 @@ export default function JoinPage() {
       
       case 1:
         return (
-          <div className="space-y-6">
+          <div className="w-full space-y-6">
             <div>
               <label className="form-label">Country / Region</label>
               <select
@@ -298,7 +298,7 @@ export default function JoinPage() {
       
       case 2:
         return (
-          <div className="space-y-6">
+          <div className="w-full space-y-6">
             <div>
               <label className="form-label">Why do you want to join OCLTA?</label>
               <p className="text-sm text-gray-600 mb-4">Select all that apply</p>
@@ -334,7 +334,7 @@ export default function JoinPage() {
       
       case 3:
         return (
-          <div className="space-y-8">
+          <div className="w-full space-y-8">
             {/* Profile Photo Upload */}
             <div>
               <label className="form-label">Profile Photo (Optional)</label>
