@@ -560,8 +560,27 @@ export default function JoinPage() {
 
   return (
     <div className="min-h-screen bg-oclta-white flex flex-col">
-      {/* OCLTA Logo - Centered on mobile, top-right on desktop */}
-      <div className="absolute top-3 left-1/2 transform -translate-x-1/2 sm:left-auto sm:right-8 sm:top-4 sm:transform-none">
+      {/* Back Arrow - Top Left */}
+      <div className="absolute top-3 left-3 sm:top-4 sm:left-4">
+        <a 
+          href="https://group.oclta.com/login" 
+          className="text-oclta-black hover:text-gray-600 transition-colors"
+          style={{ 
+            fontFamily: 'monospace',
+            fontSize: '32px',
+            lineHeight: '1',
+            imageRendering: 'pixelated',
+            textRendering: 'optimizeSpeed',
+            fontSmooth: 'never',
+            WebkitFontSmoothing: 'none'
+          }}
+        >
+          ←
+        </a>
+      </div>
+
+      {/* OCLTA Logo - Top Right */}
+      <div className="absolute top-3 right-3 sm:top-4 sm:right-8">
         <a 
           href="https://oclta.com" 
           className="oclta-title text-oclta-black hover:text-gray-600 transition-colors"
