@@ -183,7 +183,7 @@ export default function JoinPage() {
     switch (currentStep) {
       case 0:
         return (
-          <div className="space-y-4 sm:space-y-6">
+          <div className="space-y-6 sm:space-y-6">
             <div>
               <label className="form-label">First Name</label>
               <input
@@ -251,7 +251,7 @@ export default function JoinPage() {
       
       case 1:
         return (
-          <div className="space-y-4 sm:space-y-6">
+          <div className="space-y-6 sm:space-y-6">
             <div>
               <label className="form-label">Country / Region</label>
               <select
@@ -298,7 +298,7 @@ export default function JoinPage() {
       
       case 2:
         return (
-          <div className="space-y-4 sm:space-y-6">
+          <div className="space-y-6 sm:space-y-6">
             <div>
               <label className="form-label">Why do you want to join OCLTA?</label>
               <p className="text-sm text-gray-600 mb-4">Select all that apply</p>
@@ -590,14 +590,14 @@ export default function JoinPage() {
       </div>
 
       {/* Main Content */}
-      <div className="max-w-2xl mx-auto px-3 sm:px-6 py-4 sm:py-8 pt-12 sm:pt-16 flex-1">
+      <div className="max-w-2xl mx-auto px-4 sm:px-6 py-4 sm:py-8 pt-12 sm:pt-16 flex-1">
         <div className="flex">
           {/* Left Side - Progress Circles with Connecting Lines */}
-          <div className="flex flex-col items-center mr-3 sm:mr-8 mt-16 sm:mt-20">
+          <div className="flex flex-col items-center mr-4 sm:mr-8 mt-16 sm:mt-20">
             {STEPS.map((step, index) => (
               <div key={index} className="flex flex-col items-center">
                 <div 
-                  className={`w-5 h-5 sm:w-6 sm:h-6 rounded-full border-2 flex items-center justify-center text-xs font-medium transition-all duration-300 ${
+                  className={`w-8 h-8 sm:w-6 sm:h-6 rounded-full border-2 flex items-center justify-center text-sm sm:text-xs font-medium transition-all duration-300 ${
                     index <= currentStep 
                       ? 'bg-oclta-black border-oclta-black text-white' 
                       : 'border-gray-300 text-gray-400'
@@ -607,7 +607,7 @@ export default function JoinPage() {
                 </div>
                 {index < STEPS.length - 1 && (
                   <div 
-                    className={`w-0.5 h-8 sm:h-10 my-2 transition-all duration-300 ${
+                    className={`w-0.5 h-10 sm:h-10 my-2 transition-all duration-300 ${
                       index < currentStep ? 'bg-oclta-black' : 'bg-gray-300'
                     }`}
                   />
@@ -618,13 +618,13 @@ export default function JoinPage() {
 
           {/* Right Side - Form Content */}
           <div className="flex-1">
-            <h1 className="text-lg sm:text-2xl font-medium mb-4 sm:mb-8">Request Access</h1>
+            <h1 className="text-xl sm:text-2xl font-medium mb-4 sm:mb-8">Request Access</h1>
             
-            {/* Horizontal Step Navigation (Soho House style) */}
-            <div className="flex space-x-3 sm:space-x-8 mb-4 sm:mb-8 overflow-x-auto">
+            {/* Horizontal Step Navigation - Hidden on mobile, shown on desktop */}
+            <div className="hidden sm:flex space-x-8 mb-8">
               {STEPS.map((step, index) => (
                 <div key={index} className="flex flex-col items-center min-w-0 flex-shrink-0">
-                  <span className={`text-xs sm:text-sm font-medium whitespace-nowrap ${index === currentStep ? 'text-oclta-black' : 'text-gray-500'}`}>
+                  <span className={`text-sm font-medium whitespace-nowrap ${index === currentStep ? 'text-oclta-black' : 'text-gray-500'}`}>
                     {step}
                   </span>
                   <div className={`h-0.5 w-full mt-1 ${index === currentStep ? 'bg-oclta-black' : 'bg-transparent'}`}></div>
