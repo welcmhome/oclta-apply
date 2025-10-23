@@ -183,7 +183,7 @@ export default function JoinPage() {
     switch (currentStep) {
       case 0:
         return (
-          <div className="space-y-6 sm:space-y-6">
+          <div className="space-y-5 sm:space-y-6">
             <div>
               <label className="form-label">First Name</label>
               <input
@@ -251,7 +251,7 @@ export default function JoinPage() {
       
       case 1:
         return (
-          <div className="space-y-6 sm:space-y-6">
+          <div className="space-y-5 sm:space-y-6">
             <div>
               <label className="form-label">Country / Region</label>
               <select
@@ -298,7 +298,7 @@ export default function JoinPage() {
       
       case 2:
         return (
-          <div className="space-y-6 sm:space-y-6">
+          <div className="space-y-5 sm:space-y-6">
             <div>
               <label className="form-label">Why do you want to join OCLTA?</label>
               <p className="text-sm text-gray-600 mb-4">Select all that apply</p>
@@ -561,7 +561,7 @@ export default function JoinPage() {
   return (
     <div className="min-h-screen bg-oclta-white flex flex-col">
       {/* Back Arrow - Top Left */}
-      <div className="absolute top-4 left-4">
+      <div className="absolute top-3 left-3 sm:top-4 sm:left-4">
         <a 
           href="https://group.oclta.com/login" 
           className="text-oclta-black hover:text-gray-600 transition-colors"
@@ -580,7 +580,7 @@ export default function JoinPage() {
       </div>
 
       {/* OCLTA Logo - Top Right */}
-      <div className="absolute top-4 right-8">
+      <div className="absolute top-3 right-3 sm:top-4 sm:right-8">
         <a 
           href="https://oclta.com" 
           className="oclta-title text-oclta-black hover:text-gray-600 transition-colors"
@@ -590,10 +590,10 @@ export default function JoinPage() {
       </div>
 
       {/* Main Content */}
-      <div className="max-w-2xl mx-auto px-4 sm:px-6 py-4 sm:py-8 pt-12 sm:pt-16 flex-1">
+      <div className="max-w-2xl mx-auto px-2 sm:px-6 py-2 sm:py-8 pt-8 sm:pt-16 flex-1">
         <div className="flex">
           {/* Left Side - Progress Circles with Connecting Lines */}
-          <div className="flex flex-col items-center mr-4 sm:mr-8 mt-16 sm:mt-20">
+          <div className="flex flex-col items-center mr-2 sm:mr-8 mt-12 sm:mt-20">
             {STEPS.map((step, index) => (
               <div key={index} className="flex flex-col items-center">
                 <div 
@@ -618,7 +618,7 @@ export default function JoinPage() {
 
           {/* Right Side - Form Content */}
           <div className="flex-1">
-            <h1 className="text-xl sm:text-2xl font-medium mb-4 sm:mb-8">Request Access</h1>
+            <h1 className="text-2xl sm:text-2xl font-medium mb-3 sm:mb-8">Request Access</h1>
             
             {/* Horizontal Step Navigation - Hidden on mobile, shown on desktop */}
             <div className="hidden sm:flex space-x-8 mb-8">
@@ -633,7 +633,7 @@ export default function JoinPage() {
             </div>
 
             {/* Form Content */}
-            <div className="mb-3 sm:mb-6">
+            <div className="mb-2 sm:mb-6">
               {renderStepContent()}
             </div>
 

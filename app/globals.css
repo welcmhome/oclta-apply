@@ -33,11 +33,11 @@
 
 @layer components {
   .form-input {
-    @apply w-full bg-transparent border-0 border-b border-gray-300 focus:border-oclta-black focus:outline-none py-4 sm:py-2 text-base sm:text-sm transition-colors;
+    @apply w-full bg-transparent border-0 border-b border-gray-300 focus:border-oclta-black focus:outline-none py-5 sm:py-2 text-lg sm:text-sm transition-colors;
   }
   
   .form-label {
-    @apply text-base sm:text-sm font-medium text-oclta-black mb-2 sm:mb-1 block;
+    @apply text-lg sm:text-sm font-medium text-oclta-black mb-3 sm:mb-1 block;
   }
   
   .checkbox-item {
@@ -49,7 +49,7 @@
   }
   
   .btn-primary {
-    @apply bg-oclta-black text-oclta-white px-8 py-5 sm:py-3 text-base sm:text-sm font-medium hover:bg-gray-800 transition-colors;
+    @apply bg-oclta-black text-oclta-white px-8 py-6 sm:py-3 text-lg sm:text-sm font-medium hover:bg-gray-800 transition-colors;
   }
   
   .step-indicator {
