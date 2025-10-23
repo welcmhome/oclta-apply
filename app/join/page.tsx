@@ -596,7 +596,7 @@ export default function JoinPage() {
           <h1 className="text-xl font-medium mb-6">Request Access</h1>
           
           {/* Mobile Step Navigation */}
-          <div className="flex justify-start items-center space-x-2 mb-8">
+          <div className="flex justify-start items-center space-x-2 mb-8 ml-0">
             {STEPS.map((step, index) => (
               <div key={index} className="flex items-center">
                 <div 
@@ -673,16 +673,18 @@ export default function JoinPage() {
 
         {/* Mobile Form Content */}
         <div className="block sm:hidden">
-          <div className="mb-8">
-            {renderStepContent()}
+          <div className="w-full mb-8">
+            <div className="w-full">
+              {renderStepContent()}
+            </div>
           </div>
           
           {/* Mobile Navigation Buttons */}
-          <div className="flex flex-col justify-between gap-6">
+          <div className="w-full flex flex-col gap-6">
             <button
               onClick={prevStep}
               disabled={currentStep === 0}
-              className="flex items-center justify-center space-x-2 text-sm font-medium text-gray-500 hover:text-oclta-black disabled:opacity-50 disabled:cursor-not-allowed w-full"
+              className="flex items-center justify-center space-x-2 text-sm font-medium text-gray-500 hover:text-oclta-black disabled:opacity-50 disabled:cursor-not-allowed w-full py-3"
             >
               <ChevronLeft className="w-4 h-4" />
               <span>Back</span>
