@@ -596,7 +596,7 @@ export default function JoinPage() {
           <h1 className="text-xl font-medium mb-6">Request Access</h1>
           
           {/* Mobile Step Navigation */}
-          <div className="flex justify-center items-center space-x-2 mb-8">
+          <div className="flex justify-start items-center space-x-2 mb-8">
             {STEPS.map((step, index) => (
               <div key={index} className="flex items-center">
                 <div 
