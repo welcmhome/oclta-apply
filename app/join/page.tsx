@@ -590,7 +590,7 @@ export default function JoinPage() {
       </div>
 
       {/* Main Content */}
-      <div className="max-w-2xl mx-auto px-4 sm:px-6 py-4 sm:py-8 pt-20 sm:pt-16 flex-1">
+      <div className="max-w-2xl mx-auto px-2 sm:px-6 py-4 sm:py-8 pt-20 sm:pt-16 flex-1">
         {/* Mobile Layout */}
         <div className="block sm:hidden">
           <h1 className="text-xl font-medium mb-6">Request Access</h1>
@@ -673,12 +673,12 @@ export default function JoinPage() {
 
         {/* Mobile Form Content */}
         <div className="block sm:hidden">
-          <div className="mb-6">
+          <div className="mb-8">
             {renderStepContent()}
           </div>
           
           {/* Mobile Navigation Buttons */}
-          <div className="flex flex-col justify-between gap-4">
+          <div className="flex flex-col justify-between gap-6">
             <button
               onClick={prevStep}
               disabled={currentStep === 0}
