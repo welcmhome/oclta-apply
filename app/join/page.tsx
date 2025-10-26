@@ -153,6 +153,9 @@ export default function JoinPage() {
   }
 
   const handleSubmit = async () => {
+    console.log('=== handleSubmit called ===')
+    console.log('Form data:', formData)
+    console.log('Can proceed:', canProceed())
     setIsSubmitting(true)
     try {
       const submitData = new FormData()
@@ -502,6 +505,10 @@ export default function JoinPage() {
   }
 
   const canProceed = () => {
+    console.log('=== canProceed called ===')
+    console.log('Current step:', currentStep)
+    console.log('Form data:', formData)
+    
     switch (currentStep) {
       case 0:
         const isValid = formData.firstName && formData.lastName && formData.email && formData.dateOfBirth && validateEmail(formData.email) && validateDateOfBirth(formData.dateOfBirth)
