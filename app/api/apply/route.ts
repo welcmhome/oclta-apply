@@ -1,8 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase'
+import { supabase, supabaseAdmin } from '@/lib/supabase'
 
 export async function POST(request: NextRequest) {
   try {
+    console.log('Form submission received')
     const formData = await request.formData()
     const firstName = formData.get('firstName') as string
     const lastName = formData.get('lastName') as string
@@ -60,7 +61,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Check if email already exists
-    const { data: existingApplication } = await supabaseAdmin
+    const { data: existingApplication } = await supabase
       .from('applications')
       .select('email')
       .eq('email', email)
@@ -74,7 +75,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Insert new application
-    const { data, error } = await supabaseAdmin
+    const { data, error } = await supabase
       .from('applications')
       .insert([
         {
@@ -97,15 +98,16 @@ export async function POST(request: NextRequest) {
       .select()
 
     if (error) {
-      console.error('Supabase error:', error)
+      console.error('Supabase database error:', error)
+      console.error('Error details:', JSON.stringify(error, null, 2))
       return NextResponse.json(
-        { error: 'Failed to submit application' },
+        { error: 'Failed to submit application', details: error.message },
         { status: 500 }
       )
     }
 
     // Get current application count for waitlist
-    const { count } = await supabaseAdmin
+    const { count } = await supabase
       .from('applications')
       .select('*', { count: 'exact', head: true })
 
