@@ -3,8 +3,21 @@ import { supabaseAdmin } from '@/lib/supabase'
 
 export async function POST(request: NextRequest) {
   try {
-    const body = await request.json()
-    const { firstName, lastName, email, dateOfBirth, country, city, zipCode, reasons, about, instagram, linkedin, smsUpdates, phoneNumber } = body
+    const formData = await request.formData()
+    const firstName = formData.get('firstName') as string
+    const lastName = formData.get('lastName') as string
+    const email = formData.get('email') as string
+    const dateOfBirth = formData.get('dateOfBirth') as string
+    const country = formData.get('country') as string
+    const city = formData.get('city') as string
+    const zipCode = formData.get('zipCode') as string
+    const reasons = JSON.parse(formData.get('reasons') as string)
+    const about = formData.get('about') as string
+    const instagram = formData.get('instagram') as string
+    const linkedin = formData.get('linkedin') as string
+    const smsUpdates = formData.get('smsUpdates') === 'true'
+    const phoneNumber = formData.get('phoneNumber') as string
+    const profilePhoto = formData.get('profilePhoto') as File | null
 
     // Validate required fields
     if (!firstName || !lastName || !email || !dateOfBirth || !country || !city || !zipCode || !reasons || reasons.length === 0) {
@@ -23,18 +36,27 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Check if Supabase is configured
-    const isSupabaseConfigured = process.env.NEXT_PUBLIC_SUPABASE_URL && 
-      process.env.NEXT_PUBLIC_SUPABASE_URL !== 'https://placeholder.supabase.co'
+    // Supabase is now configured with real credentials
 
-    if (!isSupabaseConfigured) {
-      // Return success response without database operations
-      console.log(`Application submitted for ${email} (Supabase not configured yet)`)
-      return NextResponse.json({
-        success: true,
-        waitlistCount: 103, // Default waitlist count
-        message: 'Application submitted successfully (database not configured yet)'
-      })
+    // Upload profile photo if provided
+    let photoUrl = null
+    if (profilePhoto && profilePhoto.size > 0) {
+      const fileExt = profilePhoto.name.split('.').pop()
+      const fileName = `${email}-${Date.now()}.${fileExt}`
+      
+      const { data: uploadData, error: uploadError } = await supabaseAdmin.storage
+        .from('profile-photos')
+        .upload(fileName, profilePhoto)
+      
+      if (uploadError) {
+        console.error('Photo upload error:', uploadError)
+        return NextResponse.json(
+          { error: 'Failed to upload profile photo' },
+          { status: 500 }
+        )
+      }
+      
+      photoUrl = uploadData.path
     }
 
     // Check if email already exists
@@ -68,7 +90,8 @@ export async function POST(request: NextRequest) {
           instagram: instagram || null,
           linkedin: linkedin || null,
           sms_updates: smsUpdates || false,
-          phone_number: phoneNumber || null
+          phone_number: phoneNumber || null,
+          profile_photo_url: photoUrl
         }
       ])
       .select()
