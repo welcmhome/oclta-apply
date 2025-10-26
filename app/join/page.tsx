@@ -155,12 +155,27 @@ export default function JoinPage() {
   const handleSubmit = async () => {
     setIsSubmitting(true)
     try {
+      const submitData = new FormData()
+      submitData.append('firstName', formData.firstName)
+      submitData.append('lastName', formData.lastName)
+      submitData.append('email', formData.email)
+      submitData.append('dateOfBirth', formData.dateOfBirth)
+      submitData.append('country', formData.country)
+      submitData.append('city', formData.city)
+      submitData.append('zipCode', formData.zipCode)
+      submitData.append('reasons', JSON.stringify(formData.reasons))
+      submitData.append('about', formData.about)
+      submitData.append('instagram', formData.instagram)
+      submitData.append('linkedin', formData.linkedin)
+      submitData.append('smsUpdates', formData.smsUpdates.toString())
+      submitData.append('phoneNumber', formData.phoneNumber)
+      if (formData.profilePhoto) {
+        submitData.append('profilePhoto', formData.profilePhoto)
+      }
+
       const response = await fetch('/api/apply', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
+        body: submitData,
       })
 
       if (response.ok) {
