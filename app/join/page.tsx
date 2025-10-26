@@ -505,24 +505,36 @@ export default function JoinPage() {
     switch (currentStep) {
       case 0:
         const isValid = formData.firstName && formData.lastName && formData.email && formData.dateOfBirth && validateEmail(formData.email) && validateDateOfBirth(formData.dateOfBirth)
-        // Debug logging for Safari
-        if (typeof window !== 'undefined' && window.navigator.userAgent.includes('Safari') && !window.navigator.userAgent.includes('Chrome')) {
-          console.log('Safari Debug - canProceed step 0:', {
-            firstName: formData.firstName,
-            lastName: formData.lastName,
-            email: formData.email,
-            dateOfBirth: formData.dateOfBirth,
-            emailValid: validateEmail(formData.email),
-            dateValid: validateDateOfBirth(formData.dateOfBirth),
-            isValid
-          })
-        }
+        // Debug logging for all browsers
+        console.log('Debug - canProceed step 0:', {
+          firstName: formData.firstName,
+          lastName: formData.lastName,
+          email: formData.email,
+          dateOfBirth: formData.dateOfBirth,
+          emailValid: validateEmail(formData.email),
+          dateValid: validateDateOfBirth(formData.dateOfBirth),
+          isValid
+        })
         return isValid
       case 1:
-        return formData.country && formData.city && formData.zipCode
+        const step1Valid = formData.country && formData.city && formData.zipCode
+        console.log('Debug - canProceed step 1:', {
+          country: formData.country,
+          city: formData.city,
+          zipCode: formData.zipCode,
+          isValid: step1Valid
+        })
+        return step1Valid
       case 2:
-        return formData.reasons.length > 0
+        const step2Valid = formData.reasons.length > 0
+        console.log('Debug - canProceed step 2:', {
+          reasons: formData.reasons,
+          length: formData.reasons.length,
+          isValid: step2Valid
+        })
+        return step2Valid
       case 3:
+        console.log('Debug - canProceed step 3: always true')
         return true // Verify step is optional
       default:
         return false
