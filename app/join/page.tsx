@@ -9,6 +9,7 @@ interface FormData {
   email: string
   dateOfBirth: string
   country: string
+  state: string
   city: string
   zipCode: string
   reasons: string[]
@@ -31,6 +32,10 @@ const COUNTRIES = [
   'United States', 'Canada', 'United Kingdom', 'Australia', 'Germany', 'France', 'Spain', 'Italy', 'Netherlands', 'Sweden', 'Norway', 'Denmark', 'Finland', 'Switzerland', 'Austria', 'Belgium', 'Ireland', 'Portugal', 'Greece', 'Poland', 'Czech Republic', 'Hungary', 'Romania', 'Bulgaria', 'Croatia', 'Slovenia', 'Slovakia', 'Estonia', 'Latvia', 'Lithuania', 'Japan', 'South Korea', 'Singapore', 'Hong Kong', 'New Zealand', 'Brazil', 'Mexico', 'Argentina', 'Chile', 'Colombia', 'Peru', 'Uruguay', 'Costa Rica', 'Panama', 'India', 'China', 'Thailand', 'Malaysia', 'Philippines', 'Indonesia', 'Vietnam', 'Taiwan', 'Israel', 'United Arab Emirates', 'Saudi Arabia', 'South Africa', 'Nigeria', 'Kenya', 'Egypt', 'Morocco', 'Tunisia', 'Turkey', 'Russia', 'Ukraine', 'Belarus', 'Kazakhstan', 'Uzbekistan', 'Azerbaijan', 'Georgia', 'Armenia'
 ]
 
+const US_STATES = [
+  'Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'
+]
+
 const STEPS = [
   'Personal Details',
   'Location',
@@ -46,6 +51,7 @@ export default function JoinPage() {
     email: '',
     dateOfBirth: '',
     country: '',
+    state: '',
     city: '',
     zipCode: '',
     reasons: [],
@@ -164,6 +170,7 @@ export default function JoinPage() {
       submitData.append('email', formData.email)
       submitData.append('dateOfBirth', formData.dateOfBirth)
       submitData.append('country', formData.country)
+      submitData.append('state', formData.state)
       submitData.append('city', formData.city)
       submitData.append('zipCode', formData.zipCode)
       submitData.append('reasons', JSON.stringify(formData.reasons))
@@ -275,7 +282,13 @@ export default function JoinPage() {
               <select
                 className={`form-input ${errors.country ? 'border-red-500' : ''}`}
                 value={formData.country}
-                onChange={(e) => updateFormData('country', e.target.value)}
+                onChange={(e) => {
+                  updateFormData('country', e.target.value)
+                  // Clear state when country changes
+                  if (e.target.value !== 'United States') {
+                    updateFormData('state', '')
+                  }
+                }}
                 required
               >
                 <option value="">Select your country or region</option>
@@ -287,6 +300,27 @@ export default function JoinPage() {
               </select>
               {errors.country && <p className="text-red-500 text-sm mt-1">{errors.country}</p>}
             </div>
+            
+            {formData.country === 'United States' && (
+              <div>
+                <label className="form-label">State</label>
+                <select
+                  className={`form-input ${errors.state ? 'border-red-500' : ''}`}
+                  value={formData.state}
+                  onChange={(e) => updateFormData('state', e.target.value)}
+                  required
+                >
+                  <option value="">Select your state</option>
+                  {US_STATES.map((state) => (
+                    <option key={state} value={state}>
+                      {state}
+                    </option>
+                  ))}
+                </select>
+                {errors.state && <p className="text-red-500 text-sm mt-1">{errors.state}</p>}
+              </div>
+            )}
+            
             <div>
               <label className="form-label">City</label>
               <input
@@ -458,7 +492,15 @@ export default function JoinPage() {
                     onChange={(e) => updateFormData('phoneNumber', e.target.value)}
                     placeholder="e.g., +1 (555) 123-4567"
                   />
-                  <p className="text-xs text-gray-500 mt-2">You can unsubscribe at any time by messaging STOP.</p>
+                  <div className="mt-3 p-3 bg-gray-50 rounded-md">
+                    <p className="text-xs text-gray-700 font-medium mb-1">SMS Compliance Notice:</p>
+                    <p className="text-xs text-gray-600">
+                      By opting in, you consent to receive recurring automated marketing text messages from OCLTA at the phone number provided. 
+                      Message and data rates may apply. Reply STOP to opt out, HELP for help. 
+                      You may opt out at any time. 
+                      <span className="font-medium">Carriers are not liable for delayed or undelivered messages.</span>
+                    </p>
+                  </div>
                 </div>
               )}
             </div>
@@ -524,9 +566,11 @@ export default function JoinPage() {
         })
         return isValid
       case 1:
-        const step1Valid = formData.country && formData.city && formData.zipCode
+        const step1Valid = formData.country && formData.city && formData.zipCode && 
+          (formData.country !== 'United States' || formData.state)
         console.log('Debug - canProceed step 1:', {
           country: formData.country,
+          state: formData.state,
           city: formData.city,
           zipCode: formData.zipCode,
           isValid: step1Valid

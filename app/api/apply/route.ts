@@ -10,6 +10,7 @@ export async function POST(request: NextRequest) {
     const email = formData.get('email') as string
     const dateOfBirth = formData.get('dateOfBirth') as string
     const country = formData.get('country') as string
+    const state = formData.get('state') as string
     const city = formData.get('city') as string
     const zipCode = formData.get('zipCode') as string
     const reasons = JSON.parse(formData.get('reasons') as string)
@@ -84,6 +85,7 @@ export async function POST(request: NextRequest) {
           email,
           date_of_birth: dateOfBirth,
           country,
+          state: state || null,
           city,
           zip_code: zipCode,
           interests: reasons,
