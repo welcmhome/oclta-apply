@@ -48,16 +48,11 @@ function IntroScreen() {
   const audioRef = useRef<HTMLAudioElement>(null)
 
   const handlePlayAudio = (e: React.MouseEvent) => {
-    e.preventDefault()
-    e.stopPropagation()
-    
     if (audioRef.current) {
       // Reset to beginning
       audioRef.current.currentTime = 0
       // Play directly - must be synchronous for iOS
-      audioRef.current.play().catch(() => {
-        // Silently handle play errors
-      })
+      audioRef.current.play()
     }
   }
 
