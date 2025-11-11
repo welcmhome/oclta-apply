@@ -749,7 +749,19 @@ export default function JoinPage() {
   }
 
   return (
-    <div className="min-h-screen bg-oclta-white flex flex-col">
+    <div className="min-h-screen bg-oclta-white flex flex-col relative">
+      {/* Background Logos */}
+      <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+        <div className="absolute inset-0 opacity-[0.03]">
+          {/* Logo placeholders - add your transparent logo files here */}
+          {/* Example structure - replace with your actual logo paths */}
+          {/* <img src="/logos/logo-1.png" alt="" className="absolute top-20 left-20 w-32 h-32" />
+          <img src="/logos/logo-2.png" alt="" className="absolute bottom-20 right-20 w-32 h-32" /> */}
+        </div>
+      </div>
+
+      {/* Content Layer */}
+      <div className="relative z-10">
       {/* Back Arrow - Top Left */}
       <div className="absolute top-3 left-3 sm:top-4 sm:left-4">
         <a 
@@ -973,6 +985,7 @@ export default function JoinPage() {
       {/* Powered by OCLTA - Bottom */}
       <div className="flex justify-center py-4">
         <span className="text-[8px] text-gray-500 font-mono">Powered by OCLTA</span>
+      </div>
       </div>
     </div>
   )
