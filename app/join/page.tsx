@@ -89,7 +89,8 @@ function IntroScreen() {
             ref={audioRef} 
             src="/audio/oclta-pronunciation.mp3" 
             preload="auto"
-            style={{ display: 'none' }}
+            playsInline
+            style={{ position: 'absolute', visibility: 'hidden', width: 0, height: 0 }}
           />
         </div>
         <p className="text-xs text-gray-500 mb-4">noun</p>
