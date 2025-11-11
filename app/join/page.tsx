@@ -37,6 +37,7 @@ const US_STATES = [
 ]
 
 const STEPS = [
+  'Intro',
   'Personal Details',
   'Location',
   'Why Join',
@@ -208,6 +209,57 @@ export default function JoinPage() {
     switch (currentStep) {
       case 0:
         return (
+          <div className="w-full max-w-3xl mx-auto space-y-12">
+            {/* Main Intro Text */}
+            <div className="text-center space-y-4">
+              <p className="text-base sm:text-lg text-oclta-black leading-relaxed">
+                OCLTA is a curated, members-first community focused on real-world connection through three pillars: Projects, Blitzes, and Sessions.
+              </p>
+            </div>
+
+            {/* Three Pillars */}
+            <div className="space-y-8">
+              {/* Projects */}
+              <div className="space-y-2">
+                <h2 className="text-lg font-medium text-oclta-black">Projects</h2>
+                <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
+                  Localized, themed community events. Project 001 is a launch event at Replay Club featuring a 5K, training/lift, and a casual post-session hang designed around fitness, networking, and community.
+                </p>
+              </div>
+
+              {/* Blitzes */}
+              <div className="space-y-2">
+                <h2 className="text-lg font-medium text-oclta-black">Blitzes</h2>
+                <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
+                  Fast, curated travel and experience drops (e.g. Blitz 001, Blitz 002 in cities like Montreal, Tulum, etc.) where approved members get access to limited slots for group trips and immersive weekends.
+                </p>
+              </div>
+
+              {/* Sessions */}
+              <div className="space-y-2">
+                <h2 className="text-lg font-medium text-oclta-black">Sessions</h2>
+                <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
+                  More creative, culture-focused programs (Session 001, Session 002, etc.) such as small shows, concerts, studio nights, talks, fashion or art-led gatherings for people building and creating.
+                </p>
+              </div>
+            </div>
+
+            {/* Application Notice */}
+            <div className="pt-6 border-t border-gray-200 space-y-3">
+              <p className="text-sm text-gray-700 leading-relaxed">
+                By starting the application, you're:
+              </p>
+              <ul className="text-sm text-gray-700 space-y-2 list-disc list-inside">
+                <li>Requesting access to the OCLTA Group community</li>
+                <li>Being considered for future Projects / Blitzes / Sessions</li>
+                <li>Understanding that space is curated, not guaranteed</li>
+              </ul>
+            </div>
+          </div>
+        )
+      
+      case 1:
+        return (
           <div className="w-full space-y-6">
             <div>
               <label className="form-label">First Name</label>
@@ -274,7 +326,7 @@ export default function JoinPage() {
           </div>
         )
       
-      case 1:
+      case 2:
         return (
           <div className="w-full space-y-6">
             <div>
@@ -348,7 +400,7 @@ export default function JoinPage() {
           </div>
         )
       
-      case 2:
+      case 3:
         return (
           <div className="w-full space-y-6">
             <div>
@@ -384,7 +436,7 @@ export default function JoinPage() {
           </div>
         )
       
-      case 3:
+      case 4:
         return (
           <div className="w-full space-y-6">
             {/* Profile Photo Upload */}
@@ -517,6 +569,8 @@ export default function JoinPage() {
     
     switch (currentStep) {
       case 0:
+        return true // Intro step has no validation
+      case 1:
         if (!formData.firstName) newErrors.firstName = 'First name is required'
         if (!formData.lastName) newErrors.lastName = 'Last name is required'
         if (!formData.email) {
@@ -530,15 +584,15 @@ export default function JoinPage() {
           newErrors.dateOfBirth = 'Please enter a valid date of birth'
         }
         break
-      case 1:
+      case 2:
         if (!formData.country) newErrors.country = 'Country is required'
         if (!formData.city) newErrors.city = 'City is required'
         if (!formData.zipCode) newErrors.zipCode = 'ZIP/Postal code is required'
         break
-      case 2:
+      case 3:
         if (formData.reasons.length === 0) newErrors.reasons = 'Please select at least one reason'
         break
-      case 3:
+      case 4:
         return true // Verify step is optional
     }
     
@@ -553,9 +607,11 @@ export default function JoinPage() {
     
     switch (currentStep) {
       case 0:
+        return true // Intro step always allows proceeding
+      case 1:
         const isValid = formData.firstName && formData.lastName && formData.email && formData.dateOfBirth && validateEmail(formData.email) && validateDateOfBirth(formData.dateOfBirth)
         // Debug logging for all browsers
-        console.log('Debug - canProceed step 0:', {
+        console.log('Debug - canProceed step 1:', {
           firstName: formData.firstName,
           lastName: formData.lastName,
           email: formData.email,
@@ -565,27 +621,27 @@ export default function JoinPage() {
           isValid
         })
         return isValid
-      case 1:
-        const step1Valid = formData.country && formData.city && formData.zipCode && 
+      case 2:
+        const step2Valid = formData.country && formData.city && formData.zipCode && 
           (formData.country !== 'United States' || formData.state)
-        console.log('Debug - canProceed step 1:', {
+        console.log('Debug - canProceed step 2:', {
           country: formData.country,
           state: formData.state,
           city: formData.city,
           zipCode: formData.zipCode,
-          isValid: step1Valid
-        })
-        return step1Valid
-      case 2:
-        const step2Valid = formData.reasons.length > 0
-        console.log('Debug - canProceed step 2:', {
-          reasons: formData.reasons,
-          length: formData.reasons.length,
           isValid: step2Valid
         })
         return step2Valid
       case 3:
-        console.log('Debug - canProceed step 3: always true')
+        const step3Valid = formData.reasons.length > 0
+        console.log('Debug - canProceed step 3:', {
+          reasons: formData.reasons,
+          length: formData.reasons.length,
+          isValid: step3Valid
+        })
+        return step3Valid
+      case 4:
+        console.log('Debug - canProceed step 4: always true')
         return true // Verify step is optional
       default:
         return false
@@ -668,78 +724,93 @@ export default function JoinPage() {
       </div>
 
       {/* Main Content */}
-      <div className="w-full max-w-2xl mx-auto px-4 sm:px-6 py-4 sm:py-8 pt-20 sm:pt-16 flex-1">
+      <div className={`w-full max-w-2xl mx-auto px-4 sm:px-6 py-4 sm:py-8 ${currentStep === 0 ? 'pt-20 sm:pt-24' : 'pt-20 sm:pt-16'} flex-1 flex flex-col ${currentStep === 0 ? 'justify-center' : ''}`}>
         {/* Mobile Layout */}
         <div className="block sm:hidden">
-          <h1 className="text-xl font-medium mb-6">Request Access</h1>
+          {currentStep > 0 && <h1 className="text-xl font-medium mb-6">Request Access</h1>}
           
-          {/* Mobile Step Navigation */}
-          <div className="flex justify-start items-center space-x-2 mb-8 ml-0">
-            {STEPS.map((step, index) => (
-              <div key={index} className="flex items-center">
-                <div 
-                  className={`w-8 h-8 rounded-full border-2 flex items-center justify-center text-sm font-medium transition-all duration-300 ${
-                    index <= currentStep 
-                      ? 'bg-oclta-black border-oclta-black text-white' 
-                      : 'border-gray-300 text-gray-400'
-                  }`}
-                >
-                  {index + 1}
-                </div>
-                {index < STEPS.length - 1 && (
-                  <div 
-                    className={`w-8 h-0.5 mx-2 transition-all duration-300 ${
-                      index < currentStep ? 'bg-oclta-black' : 'bg-gray-300'
-                    }`}
-                  />
-                )}
-              </div>
-            ))}
-          </div>
+          {/* Mobile Step Navigation - Skip intro step */}
+          {currentStep > 0 && (
+            <div className="flex justify-start items-center space-x-2 mb-8 ml-0">
+              {STEPS.slice(1).map((step, index) => {
+                const actualIndex = index + 1
+                return (
+                  <div key={actualIndex} className="flex items-center">
+                    <div 
+                      className={`w-8 h-8 rounded-full border-2 flex items-center justify-center text-sm font-medium transition-all duration-300 ${
+                        actualIndex <= currentStep 
+                          ? 'bg-oclta-black border-oclta-black text-white' 
+                          : 'border-gray-300 text-gray-400'
+                      }`}
+                    >
+                      {actualIndex}
+                    </div>
+                    {actualIndex < STEPS.length - 1 && (
+                      <div 
+                        className={`w-8 h-0.5 mx-2 transition-all duration-300 ${
+                          actualIndex < currentStep ? 'bg-oclta-black' : 'bg-gray-300'
+                        }`}
+                      />
+                    )}
+                  </div>
+                )
+              })}
+            </div>
+          )}
         </div>
 
         {/* Desktop Layout */}
         <div className="hidden sm:block">
           <div className="flex">
-            {/* Left Side - Progress Circles with Connecting Lines */}
-            <div className="flex flex-col items-center mr-8 mt-20">
-              {STEPS.map((step, index) => (
-                <div key={index} className="flex flex-col items-center">
-                  <div 
-                    className={`w-6 h-6 rounded-full border-2 flex items-center justify-center text-xs font-medium transition-all duration-300 ${
-                      index <= currentStep 
-                        ? 'bg-oclta-black border-oclta-black text-white' 
-                        : 'border-gray-300 text-gray-400'
-                    }`}
-                  >
-                    {index + 1}
-                  </div>
-                  {index < STEPS.length - 1 && (
-                    <div 
-                      className={`w-0.5 h-10 my-2 transition-all duration-300 ${
-                        index < currentStep ? 'bg-oclta-black' : 'bg-gray-300'
-                      }`}
-                    />
-                  )}
-                </div>
-              ))}
-            </div>
+            {/* Left Side - Progress Circles with Connecting Lines - Skip intro step */}
+            {currentStep > 0 && (
+              <div className="flex flex-col items-center mr-8 mt-20">
+                {STEPS.slice(1).map((step, index) => {
+                  const actualIndex = index + 1
+                  return (
+                    <div key={actualIndex} className="flex flex-col items-center">
+                      <div 
+                        className={`w-6 h-6 rounded-full border-2 flex items-center justify-center text-xs font-medium transition-all duration-300 ${
+                          actualIndex <= currentStep 
+                            ? 'bg-oclta-black border-oclta-black text-white' 
+                            : 'border-gray-300 text-gray-400'
+                        }`}
+                      >
+                        {actualIndex}
+                      </div>
+                      {actualIndex < STEPS.length - 1 && (
+                        <div 
+                          className={`w-0.5 h-10 my-2 transition-all duration-300 ${
+                            actualIndex < currentStep ? 'bg-oclta-black' : 'bg-gray-300'
+                          }`}
+                        />
+                      )}
+                    </div>
+                  )
+                })}
+              </div>
+            )}
 
             {/* Right Side - Form Content */}
             <div className="flex-1">
-              <h1 className="text-2xl font-medium mb-8">Request Access</h1>
+              {currentStep > 0 && <h1 className="text-2xl font-medium mb-8">Request Access</h1>}
               
-              {/* Horizontal Step Navigation */}
-              <div className="flex space-x-8 mb-8">
-                {STEPS.map((step, index) => (
-                  <div key={index} className="flex flex-col items-center min-w-0 flex-shrink-0">
-                    <span className={`text-sm font-medium whitespace-nowrap ${index === currentStep ? 'text-oclta-black' : 'text-gray-500'}`}>
-                      {step}
-                    </span>
-                    <div className={`h-0.5 w-full mt-1 ${index === currentStep ? 'bg-oclta-black' : 'bg-transparent'}`}></div>
-                  </div>
-                ))}
-              </div>
+              {/* Horizontal Step Navigation - Skip intro step */}
+              {currentStep > 0 && (
+                <div className="flex space-x-8 mb-8">
+                  {STEPS.slice(1).map((step, index) => {
+                    const actualIndex = index + 1
+                    return (
+                      <div key={actualIndex} className="flex flex-col items-center min-w-0 flex-shrink-0">
+                        <span className={`text-sm font-medium whitespace-nowrap ${actualIndex === currentStep ? 'text-oclta-black' : 'text-gray-500'}`}>
+                          {step}
+                        </span>
+                        <div className={`h-0.5 w-full mt-1 ${actualIndex === currentStep ? 'bg-oclta-black' : 'bg-transparent'}`}></div>
+                      </div>
+                    )
+                  })}
+                </div>
+              )}
 
               {/* Form Content */}
               <div className="mb-6">
@@ -759,16 +830,25 @@ export default function JoinPage() {
           
           {/* Mobile Navigation Buttons */}
           <div className="w-full flex flex-col gap-6">
-            <button
-              onClick={prevStep}
-              disabled={currentStep === 0}
-              className="flex items-center justify-center space-x-2 text-sm font-medium text-gray-500 hover:text-oclta-black disabled:opacity-50 disabled:cursor-not-allowed w-full py-3"
-            >
-              <ChevronLeft className="w-4 h-4" />
-              <span>Back</span>
-            </button>
+            {currentStep > 0 && (
+              <button
+                onClick={prevStep}
+                disabled={currentStep === 0}
+                className="flex items-center justify-center space-x-2 text-sm font-medium text-gray-500 hover:text-oclta-black disabled:opacity-50 disabled:cursor-not-allowed w-full py-3"
+              >
+                <ChevronLeft className="w-4 h-4" />
+                <span>Back</span>
+              </button>
+            )}
 
-            {currentStep < STEPS.length - 1 ? (
+            {currentStep === 0 ? (
+              <button
+                onClick={nextStep}
+                className="btn-primary w-full"
+              >
+                Start application
+              </button>
+            ) : currentStep < STEPS.length - 1 ? (
               <button
                 onClick={nextStep}
                 disabled={!canProceed()}
@@ -791,20 +871,29 @@ export default function JoinPage() {
         {/* Desktop Navigation Buttons */}
         <div className="hidden sm:block">
           <div className="flex flex-row justify-between gap-4">
-            <button
-              onClick={prevStep}
-              disabled={currentStep === 0}
-              className="flex items-center justify-center sm:justify-start space-x-2 text-sm font-medium text-gray-500 hover:text-oclta-black disabled:opacity-50 disabled:cursor-not-allowed w-full sm:w-auto"
-            >
-              <ChevronLeft className="w-4 h-4" />
-              <span>Back</span>
-            </button>
+            {currentStep > 0 && (
+              <button
+                onClick={prevStep}
+                disabled={currentStep === 0}
+                className="flex items-center justify-center sm:justify-start space-x-2 text-sm font-medium text-gray-500 hover:text-oclta-black disabled:opacity-50 disabled:cursor-not-allowed w-full sm:w-auto"
+              >
+                <ChevronLeft className="w-4 h-4" />
+                <span>Back</span>
+              </button>
+            )}
 
-            {currentStep < STEPS.length - 1 ? (
+            {currentStep === 0 ? (
+              <button
+                onClick={nextStep}
+                className="btn-primary w-full sm:w-auto ml-auto"
+              >
+                Start application
+              </button>
+            ) : currentStep < STEPS.length - 1 ? (
               <button
                 onClick={nextStep}
                 disabled={!canProceed()}
-                className="btn-primary disabled:opacity-50 disabled:cursor-not-allowed w-full sm:w-auto"
+                className="btn-primary disabled:opacity-50 disabled:cursor-not-allowed w-full sm:w-auto ml-auto"
               >
                 Continue
               </button>
@@ -812,7 +901,7 @@ export default function JoinPage() {
               <button
                 onClick={handleSubmit}
                 disabled={!canProceed() || isSubmitting}
-                className="btn-primary disabled:opacity-50 disabled:cursor-not-allowed w-full sm:w-auto"
+                className="btn-primary disabled:opacity-50 disabled:cursor-not-allowed w-full sm:w-auto ml-auto"
               >
                 {isSubmitting ? 'Submitting...' : 'Submit'}
               </button>
