@@ -45,52 +45,53 @@ const STEPS = [
 ]
 
 function IntroScreen() {
-  const audioRef = useRef<HTMLAudioElement>(null)
+  const audioRef = useRef<HTMLAudioElement | null>(null)
 
-  useEffect(() => {
-    // Ensure audio is loaded and ready on mount
-    if (audioRef.current) {
-      audioRef.current.load()
-    }
-  }, [])
-
-  const handlePlayAudio = async (e: React.MouseEvent) => {
+  const handlePlayAudio = async (e: React.MouseEvent | React.TouchEvent) => {
     e.preventDefault()
     e.stopPropagation()
     
-    if (audioRef.current) {
-      try {
-        // Ensure audio is loaded
-        if (audioRef.current.readyState < 2) {
-          audioRef.current.load()
+    // For iOS, we need to create/load the audio element in response to user interaction
+    if (!audioRef.current) {
+      const audio = new Audio('/audio/oclta-pronunciation.mp3')
+      audio.playsInline = true
+      audio.preload = 'auto'
+      audioRef.current = audio
+    }
+    
+    const audio = audioRef.current
+    
+    try {
+      // Reset to beginning
+      audio.currentTime = 0
+      
+      // Load if needed (iOS requirement)
+      if (audio.readyState === 0) {
+        audio.load()
+      }
+      
+      // Play audio - iOS requires this to be in direct response to user interaction
+      const playPromise = audio.play()
+      
+      if (playPromise !== undefined) {
+        await playPromise
+      }
+    } catch (err: any) {
+      console.error('Audio play failed:', err)
+      
+      // For iOS, sometimes we need to try again after a brief delay
+      if (err.name === 'NotAllowedError' || err.name === 'NotSupportedError') {
+        try {
+          // Try loading first, then playing
+          audio.load()
           await new Promise(resolve => {
-            if (audioRef.current) {
-              audioRef.current.addEventListener('canplaythrough', resolve, { once: true })
-              audioRef.current.addEventListener('error', resolve, { once: true })
-            }
+            audio.addEventListener('canplay', () => resolve(null), { once: true })
+            audio.addEventListener('error', () => resolve(null), { once: true })
+            setTimeout(() => resolve(null), 500)
           })
-        }
-        
-        // Reset audio to beginning
-        audioRef.current.currentTime = 0
-        
-        // Play audio
-        const playPromise = audioRef.current.play()
-        
-        if (playPromise !== undefined) {
-          await playPromise
-        }
-      } catch (err) {
-        console.error('Audio play failed:', err)
-        // Try loading and playing again
-        if (audioRef.current) {
-          try {
-            audioRef.current.load()
-            await new Promise(resolve => setTimeout(resolve, 100))
-            await audioRef.current.play()
-          } catch (retryErr) {
-            console.error('Audio retry failed:', retryErr)
-          }
+          await audio.play()
+        } catch (retryErr) {
+          console.error('Audio retry failed:', retryErr)
         }
       }
     }
@@ -106,7 +107,8 @@ function IntroScreen() {
           </h1>
           <button
             onClick={handlePlayAudio}
-            className="text-gray-500 hover:text-oclta-black transition-colors leading-none inline-flex items-center justify-center"
+            onTouchStart={handlePlayAudio}
+            className="text-gray-500 hover:text-oclta-black transition-colors leading-none inline-flex items-center justify-center touch-manipulation"
             aria-label="Play pronunciation"
             style={{ 
               fontFamily: 'monospace',
@@ -117,7 +119,8 @@ function IntroScreen() {
               imageRendering: 'pixelated',
               textRendering: 'optimizeSpeed',
               fontSmooth: 'never',
-              WebkitFontSmoothing: 'none'
+              WebkitFontSmoothing: 'none',
+              WebkitTapHighlightColor: 'transparent'
             }}
           >
             <svg width="16" height="16" viewBox="0 0 12 12" fill="currentColor" style={{ imageRendering: 'pixelated' }}>
@@ -125,13 +128,6 @@ function IntroScreen() {
               <path d="M 5 3 L 5 9 M 6 2 L 6 10 M 7 1 L 7 11 M 8 2 L 8 10 M 9 3 L 9 9" stroke="currentColor" strokeWidth="1" fill="none" strokeLinecap="square"/>
             </svg>
           </button>
-          <audio 
-            ref={audioRef} 
-            src="/audio/oclta-pronunciation.mp3" 
-            preload="none"
-            playsInline
-            webkit-playsinline="true"
-          />
         </div>
         <p className="text-xs text-gray-500 mb-4">noun</p>
         <div className="space-y-3">
