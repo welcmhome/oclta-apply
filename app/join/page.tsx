@@ -903,7 +903,7 @@ export default function JoinPage() {
                   onClick={nextStep}
                   className="btn-primary w-full sm:w-auto px-12 py-4 text-base font-medium"
                 >
-                  Start application
+                  Start request
                 </button>
               </div>
             ) : currentStep < STEPS.length - 1 ? (
@@ -946,7 +946,7 @@ export default function JoinPage() {
                   onClick={nextStep}
                   className="btn-primary w-full sm:w-auto px-12 py-4 text-base font-medium"
                 >
-                  Start application
+                  Start request
                 </button>
               </div>
             ) : currentStep < STEPS.length - 1 ? (
