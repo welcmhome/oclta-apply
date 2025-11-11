@@ -45,17 +45,22 @@ const STEPS = [
 ]
 
 function IntroScreen() {
-  const audioRef = useRef<HTMLAudioElement>(null)
-
-  useEffect(() => {
-    // Ensure audio is loaded on mount
-    if (audioRef.current) {
-      audioRef.current.load()
-    }
-  }, [])
+  const audioRef = useRef<HTMLAudioElement | null>(null)
+  const [audioReady, setAudioReady] = useState(false)
 
   const handlePlayAudio = (e: React.MouseEvent | React.TouchEvent) => {
     e.preventDefault()
+    e.stopPropagation()
+    
+    // Create audio element on first interaction (iOS requirement)
+    if (!audioRef.current) {
+      const audio = new Audio('/audio/oclta-pronunciation.mp3')
+      audio.playsInline = true
+      audio.preload = 'auto'
+      audioRef.current = audio
+      setAudioReady(true)
+    }
+    
     if (audioRef.current) {
       // Reset to beginning
       audioRef.current.currentTime = 0
@@ -95,15 +100,6 @@ function IntroScreen() {
               <path d="M 5 3 L 5 9 M 6 2 L 6 10 M 7 1 L 7 11 M 8 2 L 8 10 M 9 3 L 9 9" stroke="currentColor" strokeWidth="1" fill="none" strokeLinecap="square"/>
             </svg>
           </button>
-          <audio 
-            ref={audioRef} 
-            src="/audio/oclta-pronunciation.mp3" 
-            preload="auto"
-            playsInline
-            webkit-playsinline="true"
-            x-webkit-airplay="allow"
-            style={{ position: 'absolute', visibility: 'hidden', width: 0, height: 0 }}
-          />
         </div>
         <p className="text-xs text-gray-500 mb-4">noun</p>
         <div className="space-y-3">
