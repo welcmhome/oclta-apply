@@ -106,9 +106,6 @@ function IntroScreen() {
             a curated, members-first group built around the pursuit for better.
           </p>
           <p className="text-sm sm:text-base text-gray-700 leading-relaxed font-light">
-            a place for those who move with intention and value depth, focus, and growth.
-          </p>
-          <p className="text-sm sm:text-base text-gray-700 leading-relaxed font-light">
             Members gain access to curated experiences and resources. These include Sessions, Projects, and Blitzes.
           </p>
         </div>
