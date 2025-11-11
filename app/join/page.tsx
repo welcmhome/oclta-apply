@@ -46,7 +46,6 @@ const STEPS = [
 
 function IntroScreen() {
   const audioRef = useRef<HTMLAudioElement | null>(null)
-  const [audioReady, setAudioReady] = useState(false)
 
   const handlePlayAudio = (e: React.MouseEvent | React.TouchEvent) => {
     e.preventDefault()
@@ -58,7 +57,6 @@ function IntroScreen() {
       audio.playsInline = true
       audio.preload = 'auto'
       audioRef.current = audio
-      setAudioReady(true)
     }
     
     if (audioRef.current) {
