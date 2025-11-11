@@ -112,10 +112,10 @@ function IntroScreen() {
       </div>
 
       {/* Three definitions */}
-      <div className="space-y-8 sm:space-y-10">
+      <div className="pt-8 border-t border-gray-200 space-y-6 sm:space-y-8">
         {/* Project */}
         <div className="intro-fade-in-delay-1">
-          <h2 className="text-base sm:text-lg font-medium text-oclta-black mb-2">Project</h2>
+          <h2 className="text-base sm:text-lg font-medium text-oclta-black mb-1.5">Project</h2>
           <p className="text-sm sm:text-base text-gray-700 leading-relaxed font-light">
             local events created to bring members together through purpose and connection
           </p>
@@ -123,7 +123,7 @@ function IntroScreen() {
 
         {/* Blitz */}
         <div className="intro-fade-in-delay-2">
-          <h2 className="text-base sm:text-lg font-medium text-oclta-black mb-2">Blitz</h2>
+          <h2 className="text-base sm:text-lg font-medium text-oclta-black mb-1.5">Blitz</h2>
           <p className="text-sm sm:text-base text-gray-700 leading-relaxed font-light">
             a nomadic travel experience centered on focus and execution, built around an intense period of work and growth
           </p>
@@ -131,7 +131,7 @@ function IntroScreen() {
 
         {/* Session */}
         <div className="intro-fade-in-delay-3">
-          <h2 className="text-base sm:text-lg font-medium text-oclta-black mb-2">Session</h2>
+          <h2 className="text-base sm:text-lg font-medium text-oclta-black mb-1.5">Session</h2>
           <p className="text-sm sm:text-base text-gray-700 leading-relaxed font-light">
             a creative experience showcasing art, sound, and design
           </p>
