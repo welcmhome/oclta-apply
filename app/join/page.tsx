@@ -60,7 +60,7 @@ function IntroScreen() {
       {/* Dictionary-style header */}
       <div className="intro-fade-in">
         <div className="flex items-baseline gap-3 mb-2">
-          <h1 className="text-2xl sm:text-3xl font-medium text-oclta-black">
+          <h1 className="text-xl sm:text-2xl font-medium text-oclta-black">
             OCLTA /əˈkʌl.tə/
           </h1>
           <button
@@ -71,27 +71,27 @@ function IntroScreen() {
               fontFamily: 'monospace',
               fontSize: '12px',
               lineHeight: '1',
-              width: '20px',
-              height: '20px',
+              width: '24px',
+              height: '24px',
               imageRendering: 'pixelated',
               textRendering: 'optimizeSpeed',
               fontSmooth: 'never',
               WebkitFontSmoothing: 'none'
             }}
           >
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor" style={{ imageRendering: 'pixelated' }}>
+            <svg width="16" height="16" viewBox="0 0 12 12" fill="currentColor" style={{ imageRendering: 'pixelated' }}>
               <rect x="2" y="4" width="2" height="4" fill="currentColor"/>
               <path d="M 5 3 L 5 9 M 6 2 L 6 10 M 7 1 L 7 11 M 8 2 L 8 10 M 9 3 L 9 9" stroke="currentColor" strokeWidth="1" fill="none" strokeLinecap="square"/>
             </svg>
           </button>
           <audio ref={audioRef} src="/audio/oclta-pronunciation.mp3" preload="auto" />
         </div>
-        <p className="text-sm text-gray-500 mb-4">noun</p>
+        <p className="text-xs text-gray-500 mb-4">noun</p>
         <div className="space-y-3">
-          <p className="text-base sm:text-lg text-oclta-black leading-relaxed font-light">
+          <p className="text-sm sm:text-base text-oclta-black leading-relaxed font-light">
             a curated, members-first community built around real experiences and genuine connection.
           </p>
-          <p className="text-base sm:text-lg text-gray-700 leading-relaxed font-light">
+          <p className="text-sm sm:text-base text-gray-700 leading-relaxed font-light">
             a space for people who explore, build, and grow together across projects, blitzes, and sessions.
           </p>
         </div>
@@ -101,24 +101,24 @@ function IntroScreen() {
       <div className="space-y-8 sm:space-y-10">
         {/* Project */}
         <div className="intro-fade-in-delay-1">
-          <h2 className="text-lg sm:text-xl font-medium text-oclta-black mb-2">Project</h2>
-          <p className="text-base sm:text-lg text-gray-700 leading-relaxed font-light">
+          <h2 className="text-base sm:text-lg font-medium text-oclta-black mb-2">Project</h2>
+          <p className="text-sm sm:text-base text-gray-700 leading-relaxed font-light">
             a collective initiative centered on shared purpose
           </p>
         </div>
 
         {/* Blitz */}
         <div className="intro-fade-in-delay-2">
-          <h2 className="text-lg sm:text-xl font-medium text-oclta-black mb-2">Blitz</h2>
-          <p className="text-base sm:text-lg text-gray-700 leading-relaxed font-light">
+          <h2 className="text-base sm:text-lg font-medium text-oclta-black mb-2">Blitz</h2>
+          <p className="text-sm sm:text-base text-gray-700 leading-relaxed font-light">
             an immersive period of focus and intensity, often tied to movement or travel
           </p>
         </div>
 
         {/* Session */}
         <div className="intro-fade-in-delay-3">
-          <h2 className="text-lg sm:text-xl font-medium text-oclta-black mb-2">Session</h2>
-          <p className="text-base sm:text-lg text-gray-700 leading-relaxed font-light">
+          <h2 className="text-base sm:text-lg font-medium text-oclta-black mb-2">Session</h2>
+          <p className="text-sm sm:text-base text-gray-700 leading-relaxed font-light">
             a space for expression, collaboration, and culture
           </p>
         </div>
@@ -126,7 +126,7 @@ function IntroScreen() {
 
       {/* Footer text */}
       <div className="pt-8 border-t border-gray-200 intro-fade-in-delay-4">
-        <p className="text-sm sm:text-base text-gray-700 leading-relaxed font-light">
+        <p className="text-xs sm:text-sm text-gray-700 leading-relaxed font-light">
           By starting the application, you are requesting access to OCLTA, a community defined by intention and belonging.
         </p>
       </div>
