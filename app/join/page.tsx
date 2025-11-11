@@ -53,7 +53,7 @@ function IntroScreen() {
     
     // Create audio element on first interaction (iOS requirement)
     if (!audioRef.current) {
-      const audio = new Audio('/audio/oclta-pronunciation.mp3')
+      const audio = new Audio('/audio/oclta-pronunciation.m4a')
       audio.playsInline = true
       audio.preload = 'auto'
       audioRef.current = audio
