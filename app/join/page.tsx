@@ -47,22 +47,49 @@ const STEPS = [
 function IntroScreen() {
   const audioRef = useRef<HTMLAudioElement>(null)
 
-  const handlePlayAudio = async () => {
+  useEffect(() => {
+    // Ensure audio is loaded and ready on mount
+    if (audioRef.current) {
+      audioRef.current.load()
+    }
+  }, [])
+
+  const handlePlayAudio = async (e: React.MouseEvent) => {
+    e.preventDefault()
+    e.stopPropagation()
+    
     if (audioRef.current) {
       try {
-        // Reset audio to beginning if already played
-        audioRef.current.currentTime = 0
-        // Play audio
-        await audioRef.current.play()
-      } catch (err) {
-        console.log('Audio play failed:', err)
-        // On mobile, sometimes we need to load first
-        if (audioRef.current) {
+        // Ensure audio is loaded
+        if (audioRef.current.readyState < 2) {
           audioRef.current.load()
+          await new Promise(resolve => {
+            if (audioRef.current) {
+              audioRef.current.addEventListener('canplaythrough', resolve, { once: true })
+              audioRef.current.addEventListener('error', resolve, { once: true })
+            }
+          })
+        }
+        
+        // Reset audio to beginning
+        audioRef.current.currentTime = 0
+        
+        // Play audio
+        const playPromise = audioRef.current.play()
+        
+        if (playPromise !== undefined) {
+          await playPromise
+        }
+      } catch (err) {
+        console.error('Audio play failed:', err)
+        // Try loading and playing again
+        if (audioRef.current) {
           try {
+            audioRef.current.load()
+            await new Promise(resolve => setTimeout(resolve, 100))
             await audioRef.current.play()
           } catch (retryErr) {
-            console.log('Audio retry failed:', retryErr)
+            console.error('Audio retry failed:', retryErr)
           }
         }
       }
@@ -101,8 +128,9 @@ function IntroScreen() {
           <audio 
             ref={audioRef} 
             src="/audio/oclta-pronunciation.mp3" 
-            preload="auto"
+            preload="none"
             playsInline
+            webkit-playsinline="true"
           />
         </div>
         <p className="text-xs text-gray-500 mb-4">noun</p>
