@@ -941,12 +941,14 @@ export default function JoinPage() {
             )}
 
             {currentStep === 0 ? (
-              <button
-                onClick={nextStep}
-                className="btn-primary disabled:opacity-50 disabled:cursor-not-allowed w-full sm:w-auto ml-auto"
-              >
-                Start request
-              </button>
+              <div className="w-full flex justify-center pt-8">
+                <button
+                  onClick={nextStep}
+                  className="btn-primary w-full sm:w-auto px-12 py-4 text-base font-medium"
+                >
+                  Start request
+                </button>
+              </div>
             ) : currentStep < STEPS.length - 1 ? (
               <button
                 onClick={nextStep}
