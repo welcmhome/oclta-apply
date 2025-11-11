@@ -209,55 +209,132 @@ export default function JoinPage() {
     switch (currentStep) {
       case 0:
         return (
-          <div className="w-full max-w-3xl mx-auto space-y-16 sm:space-y-20">
-            {/* Main Intro Text */}
-            <div className="text-center space-y-6 intro-fade-in">
-              <p className="text-lg sm:text-xl text-oclta-black leading-relaxed font-light">
-                OCLTA is a curated, members-first community built around movement, creation, and connection.
-              </p>
-              <p className="text-base sm:text-lg text-gray-700 leading-relaxed font-light max-w-2xl mx-auto">
-                You're entering a space for people who build, explore, and create together.
-              </p>
-              <p className="text-base sm:text-lg text-gray-700 leading-relaxed font-light max-w-2xl mx-auto">
-                Inside, members stay connected through curated drops, focused gatherings, and shared pursuits that move across cities and moments in time.
-              </p>
+          <div className="w-full">
+            {/* Soho House-inspired layout: Sidebar + Main Content */}
+            <div className="hidden sm:flex max-w-5xl mx-auto">
+              {/* Left Sidebar - Step Indicators */}
+              <div className="w-48 flex-shrink-0 pt-20 pr-12">
+                <div className="space-y-8">
+                  {STEPS.map((step, index) => (
+                    <div key={index} className="flex items-start space-x-3">
+                      <div 
+                        className={`w-8 h-8 rounded-full border-2 flex items-center justify-center text-sm font-medium flex-shrink-0 transition-all duration-300 ${
+                          index === 0
+                            ? 'bg-oclta-black border-oclta-black text-white' 
+                            : 'border-gray-300 text-gray-400 bg-transparent'
+                        }`}
+                      >
+                        {index === 0 ? '①' : index + 1}
+                      </div>
+                      <div className="pt-1">
+                        <span className={`text-sm font-medium block ${
+                          index === 0 ? 'text-oclta-black' : 'text-gray-400'
+                        }`}>
+                          {step}
+                        </span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Right Side - Main Content */}
+              <div className="flex-1 pt-20 max-w-2xl">
+                <div className="space-y-12">
+                  {/* Main Intro Text */}
+                  <div className="space-y-6 intro-fade-in">
+                    <p className="text-base sm:text-lg text-oclta-black leading-relaxed font-light">
+                      OCLTA is a curated, members-first community built around real experiences and genuine connection.
+                    </p>
+                    <p className="text-base sm:text-lg text-gray-700 leading-relaxed font-light">
+                      A space for people who explore, build, and grow together through projects, blitzes, and sessions.
+                    </p>
+                  </div>
+
+                  {/* Three Pillars */}
+                  <div className="space-y-10 intro-fade-in-delay-1">
+                    {/* Project */}
+                    <div className="space-y-2">
+                      <h2 className="text-lg sm:text-xl font-medium text-oclta-black">Project</h2>
+                      <p className="text-base sm:text-lg text-gray-700 leading-relaxed font-light">
+                        A collective initiative centered on shared purpose.
+                      </p>
+                    </div>
+
+                    {/* Blitz */}
+                    <div className="space-y-2 intro-fade-in-delay-2">
+                      <h2 className="text-lg sm:text-xl font-medium text-oclta-black">Blitz</h2>
+                      <p className="text-base sm:text-lg text-gray-700 leading-relaxed font-light">
+                        An immersive period of focus, travel, and creative intensity.
+                      </p>
+                    </div>
+
+                    {/* Session */}
+                    <div className="space-y-2 intro-fade-in-delay-3">
+                      <h2 className="text-lg sm:text-xl font-medium text-oclta-black">Session</h2>
+                      <p className="text-base sm:text-lg text-gray-700 leading-relaxed font-light">
+                        A space for artistic expression, collaboration, and culture.
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Application Notice */}
+                  <div className="pt-8 border-t border-gray-200 intro-fade-in-delay-4">
+                    <p className="text-sm sm:text-base text-gray-700 leading-relaxed font-light">
+                      By starting the application, you are requesting access to OCLTA, a community defined by purpose, intention, and belonging.
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
 
-            {/* Three Pillars */}
-            <div className="space-y-12 sm:space-y-16">
-              {/* Project */}
-              <div className="space-y-3 intro-fade-in-delay-1">
-                <h2 className="text-xl sm:text-2xl font-medium text-oclta-black tracking-tight">Project</h2>
-                <p className="text-base sm:text-lg text-gray-700 leading-relaxed font-light">
-                  A localized initiative designed to bring the community together through a shared purpose or event.
-                </p>
-              </div>
+            {/* Mobile Layout - Simplified */}
+            <div className="block sm:hidden space-y-10 pt-8">
+              <div className="space-y-8">
+                {/* Main Intro Text */}
+                <div className="space-y-6 intro-fade-in">
+                  <p className="text-base text-oclta-black leading-relaxed font-light">
+                    OCLTA is a curated, members-first community built around real experiences and genuine connection.
+                  </p>
+                  <p className="text-base text-gray-700 leading-relaxed font-light">
+                    A space for people who explore, build, and grow together through projects, blitzes, and sessions.
+                  </p>
+                </div>
 
-              {/* Blitz */}
-              <div className="space-y-3 intro-fade-in-delay-2">
-                <h2 className="text-xl sm:text-2xl font-medium text-oclta-black tracking-tight">Blitz</h2>
-                <p className="text-base sm:text-lg text-gray-700 leading-relaxed font-light">
-                  An immersive, time-bound experience built on intention and intensity.
-                </p>
-                <p className="text-base sm:text-lg text-gray-700 leading-relaxed font-light">
-                  Each Blitz is a focused period of travel, work, or creation — a collective push toward a defined goal.
-                </p>
-              </div>
+                {/* Three Pillars */}
+                <div className="space-y-8 intro-fade-in-delay-1">
+                  {/* Project */}
+                  <div className="space-y-2">
+                    <h2 className="text-lg font-medium text-oclta-black">Project</h2>
+                    <p className="text-base text-gray-700 leading-relaxed font-light">
+                      A collective initiative centered on shared purpose.
+                    </p>
+                  </div>
 
-              {/* Session */}
-              <div className="space-y-3 intro-fade-in-delay-3">
-                <h2 className="text-xl sm:text-2xl font-medium text-oclta-black tracking-tight">Session</h2>
-                <p className="text-base sm:text-lg text-gray-700 leading-relaxed font-light">
-                  A moment of expression. A gathering built around art, sound, or collaboration — where ideas are lived, not just shown.
-                </p>
-              </div>
-            </div>
+                  {/* Blitz */}
+                  <div className="space-y-2 intro-fade-in-delay-2">
+                    <h2 className="text-lg font-medium text-oclta-black">Blitz</h2>
+                    <p className="text-base text-gray-700 leading-relaxed font-light">
+                      An immersive period of focus, travel, and creative intensity.
+                    </p>
+                  </div>
 
-            {/* Application Notice */}
-            <div className="pt-8 sm:pt-12 border-t border-gray-200 intro-fade-in-delay-4">
-              <p className="text-sm sm:text-base text-gray-700 leading-relaxed font-light text-center">
-                By starting the application, you're requesting access to OCLTA, a community defined by purpose, creation, and motion.
-              </p>
+                  {/* Session */}
+                  <div className="space-y-2 intro-fade-in-delay-3">
+                    <h2 className="text-lg font-medium text-oclta-black">Session</h2>
+                    <p className="text-base text-gray-700 leading-relaxed font-light">
+                      A space for artistic expression, collaboration, and culture.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Application Notice */}
+                <div className="pt-6 border-t border-gray-200 intro-fade-in-delay-4">
+                  <p className="text-sm text-gray-700 leading-relaxed font-light">
+                    By starting the application, you are requesting access to OCLTA, a community defined by purpose, intention, and belonging.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         )
@@ -728,7 +805,7 @@ export default function JoinPage() {
       </div>
 
       {/* Main Content */}
-      <div className={`w-full max-w-2xl mx-auto px-4 sm:px-6 py-4 sm:py-8 ${currentStep === 0 ? 'pt-20 sm:pt-24' : 'pt-20 sm:pt-16'} flex-1 flex flex-col ${currentStep === 0 ? 'justify-center' : ''}`}>
+      <div className={`w-full ${currentStep === 0 ? 'max-w-5xl' : 'max-w-2xl'} mx-auto px-4 sm:px-6 py-4 sm:py-8 ${currentStep === 0 ? 'pt-20 sm:pt-24' : 'pt-20 sm:pt-16'} flex-1 flex flex-col ${currentStep === 0 ? '' : ''}`}>
         {/* Mobile Layout */}
         <div className="block sm:hidden">
           {currentStep > 0 && <h1 className="text-xl font-medium mb-6">Request Access</h1>}
@@ -846,12 +923,14 @@ export default function JoinPage() {
             )}
 
             {currentStep === 0 ? (
-              <button
-                onClick={nextStep}
-                className="btn-primary w-full"
-              >
-                Start application
-              </button>
+              <div className="w-full flex justify-center pt-8">
+                <button
+                  onClick={nextStep}
+                  className="btn-primary w-full sm:w-auto px-12 py-4 text-base font-medium"
+                >
+                  Start application
+                </button>
+              </div>
             ) : currentStep < STEPS.length - 1 ? (
               <button
                 onClick={nextStep}
@@ -887,12 +966,14 @@ export default function JoinPage() {
             )}
 
             {currentStep === 0 ? (
-              <button
-                onClick={nextStep}
-                className="btn-primary w-full sm:w-auto ml-auto"
-              >
-                Start application
-              </button>
+              <div className="w-full flex justify-center pt-8">
+                <button
+                  onClick={nextStep}
+                  className="btn-primary w-full sm:w-auto px-12 py-4 text-base font-medium"
+                >
+                  Start application
+                </button>
+              </div>
             ) : currentStep < STEPS.length - 1 ? (
               <button
                 onClick={nextStep}
