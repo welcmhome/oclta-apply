@@ -45,55 +45,19 @@ const STEPS = [
 ]
 
 function IntroScreen() {
-  const audioRef = useRef<HTMLAudioElement | null>(null)
+  const audioRef = useRef<HTMLAudioElement>(null)
 
-  const handlePlayAudio = async (e: React.MouseEvent | React.TouchEvent) => {
+  const handlePlayAudio = (e: React.MouseEvent) => {
     e.preventDefault()
     e.stopPropagation()
     
-    // For iOS, we need to create/load the audio element in response to user interaction
-    if (!audioRef.current) {
-      const audio = new Audio('/audio/oclta-pronunciation.mp3')
-      audio.playsInline = true
-      audio.preload = 'auto'
-      audioRef.current = audio
-    }
-    
-    const audio = audioRef.current
-    
-    try {
+    if (audioRef.current) {
       // Reset to beginning
-      audio.currentTime = 0
-      
-      // Load if needed (iOS requirement)
-      if (audio.readyState === 0) {
-        audio.load()
-      }
-      
-      // Play audio - iOS requires this to be in direct response to user interaction
-      const playPromise = audio.play()
-      
-      if (playPromise !== undefined) {
-        await playPromise
-      }
-    } catch (err: any) {
-      console.error('Audio play failed:', err)
-      
-      // For iOS, sometimes we need to try again after a brief delay
-      if (err.name === 'NotAllowedError' || err.name === 'NotSupportedError') {
-        try {
-          // Try loading first, then playing
-          audio.load()
-          await new Promise(resolve => {
-            audio.addEventListener('canplay', () => resolve(null), { once: true })
-            audio.addEventListener('error', () => resolve(null), { once: true })
-            setTimeout(() => resolve(null), 500)
-          })
-          await audio.play()
-        } catch (retryErr) {
-          console.error('Audio retry failed:', retryErr)
-        }
-      }
+      audioRef.current.currentTime = 0
+      // Play directly - must be synchronous for iOS
+      audioRef.current.play().catch(() => {
+        // Silently handle play errors
+      })
     }
   }
 
@@ -107,8 +71,7 @@ function IntroScreen() {
           </h1>
           <button
             onClick={handlePlayAudio}
-            onTouchStart={handlePlayAudio}
-            className="text-gray-500 hover:text-oclta-black transition-colors leading-none inline-flex items-center justify-center touch-manipulation"
+            className="text-gray-500 hover:text-oclta-black transition-colors leading-none inline-flex items-center justify-center"
             aria-label="Play pronunciation"
             style={{ 
               fontFamily: 'monospace',
@@ -119,8 +82,7 @@ function IntroScreen() {
               imageRendering: 'pixelated',
               textRendering: 'optimizeSpeed',
               fontSmooth: 'never',
-              WebkitFontSmoothing: 'none',
-              WebkitTapHighlightColor: 'transparent'
+              WebkitFontSmoothing: 'none'
             }}
           >
             <svg width="16" height="16" viewBox="0 0 12 12" fill="currentColor" style={{ imageRendering: 'pixelated' }}>
@@ -128,6 +90,12 @@ function IntroScreen() {
               <path d="M 5 3 L 5 9 M 6 2 L 6 10 M 7 1 L 7 11 M 8 2 L 8 10 M 9 3 L 9 9" stroke="currentColor" strokeWidth="1" fill="none" strokeLinecap="square"/>
             </svg>
           </button>
+          <audio 
+            ref={audioRef} 
+            src="/audio/oclta-pronunciation.mp3" 
+            preload="auto"
+            style={{ display: 'none' }}
+          />
         </div>
         <p className="text-xs text-gray-500 mb-4">noun</p>
         <div className="space-y-3">
