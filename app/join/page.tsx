@@ -752,11 +752,10 @@ export default function JoinPage() {
     <div className="min-h-screen bg-oclta-white flex flex-col relative">
       {/* Background Logos */}
       <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-        <div 
-          className="absolute inset-0 opacity-[0.03] bg-cover bg-center bg-no-repeat"
-          style={{
-            backgroundImage: 'url(/logos/background.png)'
-          }}
+        <img 
+          src="/logos/background.png"
+          alt=""
+          className="absolute inset-0 w-full h-full object-cover opacity-[0.05]"
         />
       </div>
 
