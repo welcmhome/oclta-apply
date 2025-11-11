@@ -47,7 +47,15 @@ const STEPS = [
 function IntroScreen() {
   const audioRef = useRef<HTMLAudioElement>(null)
 
-  const handlePlayAudio = (e: React.MouseEvent) => {
+  useEffect(() => {
+    // Ensure audio is loaded on mount
+    if (audioRef.current) {
+      audioRef.current.load()
+    }
+  }, [])
+
+  const handlePlayAudio = (e: React.MouseEvent | React.TouchEvent) => {
+    e.preventDefault()
     if (audioRef.current) {
       // Reset to beginning
       audioRef.current.currentTime = 0
@@ -66,6 +74,8 @@ function IntroScreen() {
           </h1>
           <button
             onClick={handlePlayAudio}
+            onTouchEnd={handlePlayAudio}
+            type="button"
             className="text-gray-500 hover:text-oclta-black transition-colors leading-none inline-flex items-center justify-center"
             aria-label="Play pronunciation"
             style={{ 
@@ -90,6 +100,8 @@ function IntroScreen() {
             src="/audio/oclta-pronunciation.mp3" 
             preload="auto"
             playsInline
+            webkit-playsinline="true"
+            x-webkit-airplay="allow"
             style={{ position: 'absolute', visibility: 'hidden', width: 0, height: 0 }}
           />
         </div>
