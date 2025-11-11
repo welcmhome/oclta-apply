@@ -209,51 +209,55 @@ export default function JoinPage() {
     switch (currentStep) {
       case 0:
         return (
-          <div className="w-full max-w-3xl mx-auto space-y-12">
+          <div className="w-full max-w-3xl mx-auto space-y-16 sm:space-y-20">
             {/* Main Intro Text */}
-            <div className="text-center space-y-4">
-              <p className="text-base sm:text-lg text-oclta-black leading-relaxed">
-                OCLTA is a curated, members-first community focused on real-world connection through three pillars: Projects, Blitzes, and Sessions.
+            <div className="text-center space-y-6 intro-fade-in">
+              <p className="text-lg sm:text-xl text-oclta-black leading-relaxed font-light">
+                OCLTA is a curated, members-first community built around movement, creation, and connection.
+              </p>
+              <p className="text-base sm:text-lg text-gray-700 leading-relaxed font-light max-w-2xl mx-auto">
+                You're entering a space for people who build, explore, and create together.
+              </p>
+              <p className="text-base sm:text-lg text-gray-700 leading-relaxed font-light max-w-2xl mx-auto">
+                Inside, members stay connected through curated drops, focused gatherings, and shared pursuits that move across cities and moments in time.
               </p>
             </div>
 
             {/* Three Pillars */}
-            <div className="space-y-8">
-              {/* Projects */}
-              <div className="space-y-2">
-                <h2 className="text-lg font-medium text-oclta-black">Projects</h2>
-                <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
-                  Localized, themed community events. Project 001 is a launch event at Replay Club featuring a 5K, training/lift, and a casual post-session hang designed around fitness, networking, and community.
+            <div className="space-y-12 sm:space-y-16">
+              {/* Project */}
+              <div className="space-y-3 intro-fade-in-delay-1">
+                <h2 className="text-xl sm:text-2xl font-medium text-oclta-black tracking-tight">Project</h2>
+                <p className="text-base sm:text-lg text-gray-700 leading-relaxed font-light">
+                  A localized initiative designed to bring the community together through a shared purpose or event.
                 </p>
               </div>
 
-              {/* Blitzes */}
-              <div className="space-y-2">
-                <h2 className="text-lg font-medium text-oclta-black">Blitzes</h2>
-                <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
-                  Fast, curated travel and experience drops (e.g. Blitz 001, Blitz 002 in cities like Montreal, Tulum, etc.) where approved members get access to limited slots for group trips and immersive weekends.
+              {/* Blitz */}
+              <div className="space-y-3 intro-fade-in-delay-2">
+                <h2 className="text-xl sm:text-2xl font-medium text-oclta-black tracking-tight">Blitz</h2>
+                <p className="text-base sm:text-lg text-gray-700 leading-relaxed font-light">
+                  An immersive, time-bound experience built on intention and intensity.
+                </p>
+                <p className="text-base sm:text-lg text-gray-700 leading-relaxed font-light">
+                  Each Blitz is a focused period of travel, work, or creation — a collective push toward a defined goal.
                 </p>
               </div>
 
-              {/* Sessions */}
-              <div className="space-y-2">
-                <h2 className="text-lg font-medium text-oclta-black">Sessions</h2>
-                <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
-                  More creative, culture-focused programs (Session 001, Session 002, etc.) such as small shows, concerts, studio nights, talks, fashion or art-led gatherings for people building and creating.
+              {/* Session */}
+              <div className="space-y-3 intro-fade-in-delay-3">
+                <h2 className="text-xl sm:text-2xl font-medium text-oclta-black tracking-tight">Session</h2>
+                <p className="text-base sm:text-lg text-gray-700 leading-relaxed font-light">
+                  A moment of expression. A gathering built around art, sound, or collaboration — where ideas are lived, not just shown.
                 </p>
               </div>
             </div>
 
             {/* Application Notice */}
-            <div className="pt-6 border-t border-gray-200 space-y-3">
-              <p className="text-sm text-gray-700 leading-relaxed">
-                By starting the application, you're:
+            <div className="pt-8 sm:pt-12 border-t border-gray-200 intro-fade-in-delay-4">
+              <p className="text-sm sm:text-base text-gray-700 leading-relaxed font-light text-center">
+                By starting the application, you're requesting access to OCLTA, a community defined by purpose, creation, and motion.
               </p>
-              <ul className="text-sm text-gray-700 space-y-2 list-disc list-inside">
-                <li>Requesting access to the OCLTA Group community</li>
-                <li>Being considered for future Projects / Blitzes / Sessions</li>
-                <li>Understanding that space is curated, not guaranteed</li>
-              </ul>
             </div>
           </div>
         )
