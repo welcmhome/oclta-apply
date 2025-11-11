@@ -47,11 +47,25 @@ const STEPS = [
 function IntroScreen() {
   const audioRef = useRef<HTMLAudioElement>(null)
 
-  const handlePlayAudio = () => {
+  const handlePlayAudio = async () => {
     if (audioRef.current) {
-      audioRef.current.play().catch(err => {
+      try {
+        // Reset audio to beginning if already played
+        audioRef.current.currentTime = 0
+        // Play audio
+        await audioRef.current.play()
+      } catch (err) {
         console.log('Audio play failed:', err)
-      })
+        // On mobile, sometimes we need to load first
+        if (audioRef.current) {
+          audioRef.current.load()
+          try {
+            await audioRef.current.play()
+          } catch (retryErr) {
+            console.log('Audio retry failed:', retryErr)
+          }
+        }
+      }
     }
   }
 
@@ -84,7 +98,12 @@ function IntroScreen() {
               <path d="M 5 3 L 5 9 M 6 2 L 6 10 M 7 1 L 7 11 M 8 2 L 8 10 M 9 3 L 9 9" stroke="currentColor" strokeWidth="1" fill="none" strokeLinecap="square"/>
             </svg>
           </button>
-          <audio ref={audioRef} src="/audio/oclta-pronunciation.mp3" preload="auto" />
+          <audio 
+            ref={audioRef} 
+            src="/audio/oclta-pronunciation.mp3" 
+            preload="auto"
+            playsInline
+          />
         </div>
         <p className="text-xs text-gray-500 mb-4">noun</p>
         <div className="space-y-3">
