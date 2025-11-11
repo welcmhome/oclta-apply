@@ -74,7 +74,7 @@ function IntroScreen() {
       <div className="intro-fade-in">
         <div className="flex items-baseline gap-3 mb-2">
           <h1 className="text-xl sm:text-2xl font-medium text-oclta-black">
-            OCLTA /əˈkʌl.tə/
+            OCLTA GRP /əˈkʌl.tə/
           </h1>
           <button
             onClick={handlePlayAudio}
@@ -103,10 +103,13 @@ function IntroScreen() {
         <p className="text-xs text-gray-500 mb-4">noun</p>
         <div className="space-y-3">
           <p className="text-sm sm:text-base text-oclta-black leading-relaxed font-light">
-            a curated, members-first community built around real experiences and genuine connection.
+            a curated, members-first group built around the pursuit for better.
           </p>
           <p className="text-sm sm:text-base text-gray-700 leading-relaxed font-light">
-            a space for people who explore, build, and grow together across projects, blitzes, and sessions.
+            a place for those who move with intention and value depth, focus, and growth.
+          </p>
+          <p className="text-sm sm:text-base text-gray-700 leading-relaxed font-light">
+            Members gain access to curated experiences and resources. These include Sessions, Projects, and Blitzes.
           </p>
         </div>
       </div>
@@ -117,7 +120,7 @@ function IntroScreen() {
         <div className="intro-fade-in-delay-1">
           <h2 className="text-base sm:text-lg font-medium text-oclta-black mb-2">Project</h2>
           <p className="text-sm sm:text-base text-gray-700 leading-relaxed font-light">
-            a collective initiative centered on shared purpose
+            local events created to bring members together through purpose and connection
           </p>
         </div>
 
@@ -125,7 +128,7 @@ function IntroScreen() {
         <div className="intro-fade-in-delay-2">
           <h2 className="text-base sm:text-lg font-medium text-oclta-black mb-2">Blitz</h2>
           <p className="text-sm sm:text-base text-gray-700 leading-relaxed font-light">
-            an immersive period of focus and intensity, often tied to movement or travel
+            a nomadic travel experience centered on focus and execution, built around an intense period of work and growth
           </p>
         </div>
 
@@ -133,7 +136,7 @@ function IntroScreen() {
         <div className="intro-fade-in-delay-3">
           <h2 className="text-base sm:text-lg font-medium text-oclta-black mb-2">Session</h2>
           <p className="text-sm sm:text-base text-gray-700 leading-relaxed font-light">
-            a space for expression, collaboration, and culture
+            a creative experience showcasing art, sound, and design
           </p>
         </div>
       </div>
@@ -141,7 +144,7 @@ function IntroScreen() {
       {/* Footer text */}
       <div className="pt-8 border-t border-gray-200 intro-fade-in-delay-4">
         <p className="text-xs sm:text-sm text-gray-700 leading-relaxed font-light">
-          By starting the application, you are requesting access to OCLTA, a community defined by intention and belonging.
+          By starting the application, you are requesting access to OCLTA GRP, a space defined by intention and discipline.
         </p>
       </div>
     </div>
