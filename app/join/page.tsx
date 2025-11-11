@@ -752,12 +752,12 @@ export default function JoinPage() {
     <div className="min-h-screen bg-oclta-white flex flex-col relative">
       {/* Background Logos */}
       <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-        <div className="absolute inset-0 opacity-[0.03]">
-          {/* Logo placeholders - add your transparent logo files here */}
-          {/* Example structure - replace with your actual logo paths */}
-          {/* <img src="/logos/logo-1.png" alt="" className="absolute top-20 left-20 w-32 h-32" />
-          <img src="/logos/logo-2.png" alt="" className="absolute bottom-20 right-20 w-32 h-32" /> */}
-        </div>
+        <div 
+          className="absolute inset-0 opacity-[0.03] bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: 'url(/logos/background.png)'
+          }}
+        />
       </div>
 
       {/* Content Layer */}
