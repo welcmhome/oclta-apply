@@ -65,10 +65,19 @@ function IntroScreen() {
           </h1>
           <button
             onClick={handlePlayAudio}
-            className="text-gray-500 hover:text-oclta-black transition-colors text-lg leading-none"
+            className="text-gray-500 hover:text-oclta-black transition-colors leading-none"
             aria-label="Play pronunciation"
+            style={{ 
+              fontFamily: 'monospace',
+              fontSize: '14px',
+              lineHeight: '1',
+              imageRendering: 'pixelated',
+              textRendering: 'optimizeSpeed',
+              fontSmooth: 'never',
+              WebkitFontSmoothing: 'none'
+            }}
           >
-            🔊
+            ◉
           </button>
           <audio ref={audioRef} src="/audio/oclta-pronunciation.mp3" preload="auto" />
         </div>
