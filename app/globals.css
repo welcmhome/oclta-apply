@@ -27,37 +27,37 @@
   }
   
   body {
-    @apply bg-oclta-white text-oclta-black;
+    @apply bg-oclta-white text-oclta-black dark:bg-oclta-black dark:text-oclta-white;
   }
 }
 
 @layer components {
   .form-input {
-    @apply w-full bg-transparent border-0 border-b border-gray-300 focus:border-oclta-black focus:outline-none py-3 sm:py-2 text-base sm:text-sm transition-colors;
+    @apply w-full bg-transparent border-0 border-b border-gray-300 dark:border-gray-600 focus:border-oclta-black dark:focus:border-oclta-white focus:outline-none py-3 sm:py-2 text-base sm:text-sm transition-colors text-oclta-black dark:text-oclta-white;
   }
   
   .form-label {
-    @apply text-base sm:text-sm font-medium text-oclta-black mb-2 sm:mb-1 block;
+    @apply text-base sm:text-sm font-medium text-oclta-black dark:text-oclta-white mb-2 sm:mb-1 block;
   }
   
   .checkbox-item {
-    @apply flex items-center space-x-3 py-3 border-b border-gray-100 last:border-b-0;
+    @apply flex items-center space-x-3 py-3 border-b border-gray-100 dark:border-gray-800 last:border-b-0;
   }
   
   .checkbox-input {
-    @apply w-4 h-4 text-oclta-black bg-transparent border border-gray-300 rounded focus:ring-oclta-black focus:ring-2;
+    @apply w-4 h-4 text-oclta-black dark:text-oclta-white bg-transparent border border-gray-300 dark:border-gray-600 rounded focus:ring-oclta-black dark:focus:ring-oclta-white focus:ring-2;
   }
   
   .btn-primary {
-    @apply bg-oclta-black text-oclta-white px-8 py-4 sm:py-3 text-base sm:text-sm font-medium hover:bg-gray-800 transition-colors;
+    @apply bg-oclta-black dark:bg-oclta-white text-oclta-white dark:text-oclta-black px-8 py-4 sm:py-3 text-base sm:text-sm font-medium hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors;
   }
   
   .step-indicator {
-    @apply text-xs uppercase tracking-wider text-gray-500;
+    @apply text-xs uppercase tracking-wider text-gray-500 dark:text-gray-400;
   }
   
   .step-active {
-    @apply text-oclta-black border-b border-oclta-black;
+    @apply text-oclta-black dark:text-oclta-white border-b border-oclta-black dark:border-oclta-white;
   }
   
   .progress-circle {

@@ -73,14 +73,14 @@ function IntroScreen() {
       {/* Dictionary-style header */}
       <div className="intro-fade-in">
         <div className="flex items-baseline gap-3 mb-2">
-          <h1 className="text-lg sm:text-xl font-medium text-oclta-black">
+          <h1 className="text-lg sm:text-xl font-medium text-oclta-black dark:text-oclta-white">
             OCLTA GRP /əˈkʌl.tə/
           </h1>
           <button
             onClick={handlePlayAudio}
             onTouchEnd={handlePlayAudio}
             type="button"
-            className="text-gray-500 hover:text-oclta-black transition-colors leading-none inline-flex items-center justify-center"
+            className="text-gray-500 dark:text-gray-400 hover:text-oclta-black dark:hover:text-oclta-white transition-colors leading-none inline-flex items-center justify-center"
             aria-label="Play pronunciation"
             style={{ 
               fontFamily: 'monospace',
@@ -100,47 +100,47 @@ function IntroScreen() {
             </svg>
           </button>
         </div>
-        <p className="text-[10px] text-gray-500 mb-4">noun</p>
+        <p className="text-[10px] text-gray-500 dark:text-gray-400 mb-4">noun</p>
         <div className="space-y-3">
-          <p className="text-xs sm:text-sm text-oclta-black leading-relaxed font-light">
+          <p className="text-xs sm:text-sm text-oclta-black dark:text-oclta-white leading-relaxed font-light">
             a curated, members-first group built around the pursuit for better.
           </p>
-          <p className="text-xs sm:text-sm text-gray-700 leading-relaxed font-light">
+          <p className="text-xs sm:text-sm text-gray-700 dark:text-gray-300 leading-relaxed font-light">
             Members gain access to curated experiences and resources. These include Sessions, Projects, and Blitzes.
           </p>
         </div>
       </div>
 
       {/* Three definitions */}
-      <div className="pt-8 border-t border-gray-200 space-y-6 sm:space-y-8">
+      <div className="pt-8 border-t border-gray-200 dark:border-gray-700 space-y-6 sm:space-y-8">
         {/* Project */}
         <div className="intro-fade-in-delay-1">
-          <h2 className="text-sm sm:text-base font-medium text-oclta-black mb-1.5">Project</h2>
-          <p className="text-xs sm:text-sm text-gray-700 leading-relaxed font-light">
+          <h2 className="text-sm sm:text-base font-medium text-oclta-black dark:text-oclta-white mb-1.5">Project</h2>
+          <p className="text-xs sm:text-sm text-gray-700 dark:text-gray-300 leading-relaxed font-light">
             local events created to bring members together through purpose and connection
           </p>
         </div>
 
         {/* Blitz */}
         <div className="intro-fade-in-delay-2">
-          <h2 className="text-sm sm:text-base font-medium text-oclta-black mb-1.5">Blitz</h2>
-          <p className="text-xs sm:text-sm text-gray-700 leading-relaxed font-light">
+          <h2 className="text-sm sm:text-base font-medium text-oclta-black dark:text-oclta-white mb-1.5">Blitz</h2>
+          <p className="text-xs sm:text-sm text-gray-700 dark:text-gray-300 leading-relaxed font-light">
             a nomadic travel experience centered on focus and execution, built around an intense period of work and growth
           </p>
         </div>
 
         {/* Session */}
         <div className="intro-fade-in-delay-3">
-          <h2 className="text-sm sm:text-base font-medium text-oclta-black mb-1.5">Session</h2>
-          <p className="text-xs sm:text-sm text-gray-700 leading-relaxed font-light">
+          <h2 className="text-sm sm:text-base font-medium text-oclta-black dark:text-oclta-white mb-1.5">Session</h2>
+          <p className="text-xs sm:text-sm text-gray-700 dark:text-gray-300 leading-relaxed font-light">
             a creative experience showcasing art, sound, and design
           </p>
         </div>
       </div>
 
       {/* Footer text */}
-      <div className="pt-8 border-t border-gray-200 intro-fade-in-delay-4">
-        <p className="text-[10px] sm:text-xs text-gray-700 leading-relaxed font-light">
+      <div className="pt-8 border-t border-gray-200 dark:border-gray-700 intro-fade-in-delay-4">
+        <p className="text-[10px] sm:text-xs text-gray-700 dark:text-gray-300 leading-relaxed font-light">
           By starting the application, you are requesting access to OCLTA GRP, a space defined by intention and discipline.
         </p>
       </div>
@@ -327,7 +327,7 @@ export default function JoinPage() {
                 placeholder="Enter your first name"
                 required
               />
-              {errors.firstName && <p className="text-red-500 text-sm mt-1">{errors.firstName}</p>}
+              {errors.firstName && <p className="text-red-500 dark:text-red-400 text-sm mt-1">{errors.firstName}</p>}
             </div>
             <div>
               <label className="form-label">Last Name</label>
@@ -461,7 +461,7 @@ export default function JoinPage() {
           <div className="w-full space-y-6">
             <div>
               <label className="form-label">Why do you want to join OCLTA?</label>
-              <p className="text-sm text-gray-600 mb-4">Select all that apply</p>
+              <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">Select all that apply</p>
               <div className="space-y-0">
                 {REASONS.map((reason) => (
                   <div key={reason} className="checkbox-item">
@@ -472,13 +472,13 @@ export default function JoinPage() {
                       checked={formData.reasons.includes(reason)}
                       onChange={() => toggleReason(reason)}
                     />
-                    <label htmlFor={reason} className="text-sm font-medium cursor-pointer">
+                    <label htmlFor={reason} className="text-sm font-medium cursor-pointer text-oclta-black dark:text-oclta-white">
                       {reason}
                     </label>
                   </div>
                 ))}
               </div>
-              {errors.reasons && <p className="text-red-500 text-sm mt-1">{errors.reasons}</p>}
+              {errors.reasons && <p className="text-red-500 dark:text-red-400 text-sm mt-1">{errors.reasons}</p>}
             </div>
             <div>
               <label className="form-label">Tell us more about yourself (optional)</label>
@@ -498,11 +498,11 @@ export default function JoinPage() {
             {/* Profile Photo Upload */}
             <div>
               <label className="form-label">Profile Photo (Optional)</label>
-              <p className="text-sm text-gray-600 mb-4">
+              <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
                 Completing this optional step helps us pre-verify members for future Blitz travel or in-person events, ensuring you're cleared for access when we launch.
               </p>
               <div 
-                className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center hover:border-gray-400 transition-colors cursor-pointer"
+                className="border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg p-8 text-center hover:border-gray-400 dark:hover:border-gray-500 transition-colors cursor-pointer"
                 onClick={() => document.getElementById('profile-photo-upload')?.click()}
                 onDrop={(e) => {
                   e.preventDefault()
@@ -526,12 +526,12 @@ export default function JoinPage() {
                 />
                 {formData.profilePhoto ? (
                   <div>
-                    <p className="text-sm text-oclta-black">Photo selected: {formData.profilePhoto.name}</p>
-                    <span className="text-sm text-gray-500 underline mt-2">Change photo</span>
+                    <p className="text-sm text-oclta-black dark:text-oclta-white">Photo selected: {formData.profilePhoto.name}</p>
+                    <span className="text-sm text-gray-500 dark:text-gray-400 underline mt-2">Change photo</span>
                   </div>
                 ) : (
                   <div>
-                    <p className="text-sm text-gray-500">Drag and drop your photo here, or click to browse</p>
+                    <p className="text-sm text-gray-500 dark:text-gray-400">Drag and drop your photo here, or click to browse</p>
                   </div>
                 )}
               </div>
@@ -540,7 +540,7 @@ export default function JoinPage() {
             {/* Social Media */}
             <div>
               <label className="form-label">Social Media (Optional)</label>
-              <p className="text-sm text-gray-600 mb-4">Connect your social profiles to help us learn more about you.</p>
+              <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">Connect your social profiles to help us learn more about you.</p>
               <div className="space-y-4">
                 <div>
                   <label className="form-label">Instagram</label>
@@ -573,11 +573,11 @@ export default function JoinPage() {
             </div>
 
             {/* Text Message Updates */}
-            <div className="pt-4 border-t border-gray-100">
+            <div className="pt-4 border-t border-gray-100 dark:border-gray-800">
               <div className="flex items-center justify-between">
                 <div>
                   <label htmlFor="sms-toggle" className="form-label cursor-pointer">Text Message Updates (Optional)</label>
-                  <p className="text-xs text-gray-600">Stay informed about OCLTA news and events via SMS.</p>
+                  <p className="text-xs text-gray-600 dark:text-gray-400">Stay informed about OCLTA news and events via SMS.</p>
                 </div>
                 <label className="relative inline-flex items-center cursor-pointer">
                   <input
@@ -587,7 +587,7 @@ export default function JoinPage() {
                     checked={formData.smsUpdates}
                     onChange={(e) => updateFormData('smsUpdates', e.target.checked)}
                   />
-                  <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-oclta-black rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-oclta-black"></div>
+                  <div className="w-11 h-6 bg-gray-200 dark:bg-gray-700 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-oclta-black dark:peer-focus:ring-oclta-white rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 dark:after:border-gray-600 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-oclta-black dark:peer-checked:bg-oclta-white"></div>
                 </label>
               </div>
               {formData.smsUpdates && (
@@ -600,9 +600,9 @@ export default function JoinPage() {
                     onChange={(e) => updateFormData('phoneNumber', e.target.value)}
                     placeholder="e.g., +1 (555) 123-4567"
                   />
-                  <div className="mt-3 p-3 bg-gray-50 rounded-md">
-                    <p className="text-xs text-gray-700 font-medium mb-1">SMS Compliance Notice:</p>
-                    <p className="text-xs text-gray-600">
+                  <div className="mt-3 p-3 bg-gray-50 dark:bg-gray-900 rounded-md">
+                    <p className="text-xs text-gray-700 dark:text-gray-300 font-medium mb-1">SMS Compliance Notice:</p>
+                    <p className="text-xs text-gray-600 dark:text-gray-400">
                       By opting in, you consent to receive recurring automated marketing text messages from OCLTA at the phone number provided. 
                       Message and data rates may apply. Reply STOP to opt out, HELP for help. 
                       You may opt out at any time. 
@@ -707,9 +707,9 @@ export default function JoinPage() {
   // Loading screen
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-oclta-white flex flex-col items-center justify-center">
+      <div className="min-h-screen bg-oclta-white dark:bg-oclta-black flex flex-col items-center justify-center">
         {/* OCLTA Title */}
-        <div className="loading-title text-oclta-black mb-8">
+        <div className="loading-title text-oclta-black dark:text-oclta-white mb-8">
           OCLTA
         </div>
         
@@ -717,9 +717,9 @@ export default function JoinPage() {
         <div className="flex flex-col items-center space-y-6">
           {/* Animated dots */}
           <div className="flex space-x-2">
-            <div className="w-3 h-3 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
-            <div className="w-3 h-3 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
-            <div className="w-3 h-3 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
+            <div className="w-3 h-3 bg-gray-400 dark:bg-gray-600 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
+            <div className="w-3 h-3 bg-gray-400 dark:bg-gray-600 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
+            <div className="w-3 h-3 bg-gray-400 dark:bg-gray-600 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
           </div>
         </div>
       </div>
@@ -729,9 +729,9 @@ export default function JoinPage() {
   // Submission loading screen
   if (isSubmitting) {
     return (
-      <div className="min-h-screen bg-oclta-white flex flex-col items-center justify-center">
+      <div className="min-h-screen bg-oclta-white dark:bg-oclta-black flex flex-col items-center justify-center">
         {/* OCLTA Title */}
-        <div className="loading-title text-oclta-black mb-8">
+        <div className="loading-title text-oclta-black dark:text-oclta-white mb-8">
           OCLTA
         </div>
         
@@ -739,9 +739,9 @@ export default function JoinPage() {
         <div className="flex flex-col items-center space-y-6">
           {/* Animated dots */}
           <div className="flex space-x-2">
-            <div className="w-3 h-3 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
-            <div className="w-3 h-3 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
-            <div className="w-3 h-3 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
+            <div className="w-3 h-3 bg-gray-400 dark:bg-gray-600 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
+            <div className="w-3 h-3 bg-gray-400 dark:bg-gray-600 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
+            <div className="w-3 h-3 bg-gray-400 dark:bg-gray-600 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
           </div>
         </div>
       </div>
@@ -750,7 +750,7 @@ export default function JoinPage() {
 
   return (
     <div 
-      className="min-h-screen bg-oclta-white flex flex-col relative"
+      className="min-h-screen bg-oclta-white dark:bg-oclta-black flex flex-col relative"
       style={{
         backgroundImage: 'url(/logos/background.png)',
         backgroundSize: 'cover',
@@ -765,7 +765,7 @@ export default function JoinPage() {
       <div className="absolute top-3 left-3 sm:top-4 sm:left-4">
         <a 
           href="https://group.oclta.com/login" 
-          className="text-oclta-black hover:text-gray-600 transition-colors"
+          className="text-oclta-black dark:text-oclta-white hover:text-gray-600 dark:hover:text-gray-400 transition-colors"
           style={{ 
             fontFamily: 'monospace',
             fontSize: '32px',
@@ -784,7 +784,7 @@ export default function JoinPage() {
       <div className="absolute top-3 right-3 sm:top-4 sm:right-8">
         <a 
           href="https://oclta.com" 
-          className="oclta-title text-oclta-black hover:text-gray-600 transition-colors"
+          className="oclta-title text-oclta-black dark:text-oclta-white hover:text-gray-600 dark:hover:text-gray-400 transition-colors"
         >
           OCLTA
         </a>
@@ -794,7 +794,7 @@ export default function JoinPage() {
       <div className={`w-full ${currentStep === 0 ? 'max-w-3xl' : 'max-w-2xl'} mx-auto px-4 sm:px-6 py-4 sm:py-8 ${currentStep === 0 ? 'pt-20 sm:pt-24' : 'pt-20 sm:pt-16'} flex-1 flex flex-col ${currentStep === 0 ? 'justify-center' : ''}`}>
         {/* Mobile Layout */}
         <div className="block sm:hidden">
-          {currentStep > 0 && <h1 className="text-xl font-medium mb-6">Request Access</h1>}
+          {currentStep > 0 && <h1 className="text-xl font-medium mb-6 text-oclta-black dark:text-oclta-white">Request Access</h1>}
           
           {/* Mobile Step Navigation - Skip intro step */}
           {currentStep > 0 && (
@@ -806,17 +806,17 @@ export default function JoinPage() {
                     <div 
                       className={`w-8 h-8 rounded-full border-2 flex items-center justify-center text-sm font-medium transition-all duration-300 ${
                         actualIndex <= currentStep 
-                          ? 'bg-oclta-black border-oclta-black text-white' 
-                          : 'border-gray-300 text-gray-400'
+                          ? 'bg-oclta-black dark:bg-oclta-white border-oclta-black dark:border-oclta-white text-white dark:text-black' 
+                          : 'border-gray-300 dark:border-gray-600 text-gray-400 dark:text-gray-500'
                       }`}
                     >
                       {actualIndex}
                     </div>
                     {actualIndex < STEPS.length - 1 && (
                       <div 
-                        className={`w-8 h-0.5 mx-2 transition-all duration-300 ${
-                          actualIndex < currentStep ? 'bg-oclta-black' : 'bg-gray-300'
-                        }`}
+                      className={`w-8 h-0.5 mx-2 transition-all duration-300 ${
+                        actualIndex < currentStep ? 'bg-oclta-black dark:bg-oclta-white' : 'bg-gray-300 dark:bg-gray-600'
+                      }`}
                       />
                     )}
                   </div>
@@ -837,18 +837,18 @@ export default function JoinPage() {
                   return (
                     <div key={actualIndex} className="flex flex-col items-center">
                       <div 
-                        className={`w-6 h-6 rounded-full border-2 flex items-center justify-center text-xs font-medium transition-all duration-300 ${
-                          actualIndex <= currentStep 
-                            ? 'bg-oclta-black border-oclta-black text-white' 
-                            : 'border-gray-300 text-gray-400'
-                        }`}
+                      className={`w-6 h-6 rounded-full border-2 flex items-center justify-center text-xs font-medium transition-all duration-300 ${
+                        actualIndex <= currentStep 
+                          ? 'bg-oclta-black dark:bg-oclta-white border-oclta-black dark:border-oclta-white text-white dark:text-black' 
+                          : 'border-gray-300 dark:border-gray-600 text-gray-400 dark:text-gray-500'
+                      }`}
                       >
                         {actualIndex}
                       </div>
                       {actualIndex < STEPS.length - 1 && (
                         <div 
                           className={`w-0.5 h-10 my-2 transition-all duration-300 ${
-                            actualIndex < currentStep ? 'bg-oclta-black' : 'bg-gray-300'
+                            actualIndex < currentStep ? 'bg-oclta-black dark:bg-oclta-white' : 'bg-gray-300 dark:bg-gray-600'
                           }`}
                         />
                       )}
@@ -860,7 +860,7 @@ export default function JoinPage() {
 
             {/* Right Side - Form Content */}
             <div className="flex-1">
-              {currentStep > 0 && <h1 className="text-2xl font-medium mb-8">Request Access</h1>}
+              {currentStep > 0 && <h1 className="text-2xl font-medium mb-8 text-oclta-black dark:text-oclta-white">Request Access</h1>}
               
               {/* Horizontal Step Navigation - Skip intro step */}
               {currentStep > 0 && (
@@ -869,10 +869,10 @@ export default function JoinPage() {
                     const actualIndex = index + 1
                     return (
                       <div key={actualIndex} className="flex flex-col items-center min-w-0 flex-shrink-0">
-                        <span className={`text-sm font-medium whitespace-nowrap ${actualIndex === currentStep ? 'text-oclta-black' : 'text-gray-500'}`}>
+                        <span className={`text-sm font-medium whitespace-nowrap ${actualIndex === currentStep ? 'text-oclta-black dark:text-oclta-white' : 'text-gray-500 dark:text-gray-400'}`}>
                           {step}
                         </span>
-                        <div className={`h-0.5 w-full mt-1 ${actualIndex === currentStep ? 'bg-oclta-black' : 'bg-transparent'}`}></div>
+                        <div className={`h-0.5 w-full mt-1 ${actualIndex === currentStep ? 'bg-oclta-black dark:bg-oclta-white' : 'bg-transparent'}`}></div>
                       </div>
                     )
                   })}
@@ -901,7 +901,7 @@ export default function JoinPage() {
               <button
                 onClick={prevStep}
                 disabled={currentStep === 0}
-                className="flex items-center justify-center space-x-2 text-sm font-medium text-gray-500 hover:text-oclta-black disabled:opacity-50 disabled:cursor-not-allowed w-full py-3"
+                className="flex items-center justify-center space-x-2 text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-oclta-black dark:hover:text-oclta-white disabled:opacity-50 disabled:cursor-not-allowed w-full py-3"
               >
                 <ChevronLeft className="w-4 h-4" />
                 <span>Back</span>
@@ -912,7 +912,7 @@ export default function JoinPage() {
               <div className="w-full flex justify-center pt-8 intro-fade-in-delay-5">
                 <button
                   onClick={nextStep}
-                  className="group relative bg-oclta-black text-oclta-white px-8 py-3 text-sm font-medium border border-oclta-black hover:bg-transparent hover:text-oclta-black transition-all duration-300 ease-out overflow-hidden w-full sm:w-auto"
+                  className="group relative bg-oclta-black dark:bg-oclta-white text-oclta-white dark:text-oclta-black px-8 py-3 text-sm font-medium border border-oclta-black dark:border-oclta-white hover:bg-transparent dark:hover:bg-transparent hover:text-oclta-black dark:hover:text-oclta-white transition-all duration-300 ease-out overflow-hidden w-full sm:w-auto"
                 >
                   <span className="relative z-10 flex items-center justify-center gap-2">
                     Start request
@@ -920,7 +920,7 @@ export default function JoinPage() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                     </svg>
                   </span>
-                  <span className="absolute inset-0 bg-oclta-white transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+                  <span className="absolute inset-0 bg-oclta-white dark:bg-oclta-black transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
                 </button>
               </div>
             ) : currentStep < STEPS.length - 1 ? (
@@ -961,7 +961,7 @@ export default function JoinPage() {
               <div className="w-full flex justify-center pt-8 intro-fade-in-delay-5">
                 <button
                   onClick={nextStep}
-                  className="group relative bg-oclta-black text-oclta-white px-8 py-3 text-sm font-medium border border-oclta-black hover:bg-transparent hover:text-oclta-black transition-all duration-300 ease-out overflow-hidden w-full sm:w-auto"
+                  className="group relative bg-oclta-black dark:bg-oclta-white text-oclta-white dark:text-oclta-black px-8 py-3 text-sm font-medium border border-oclta-black dark:border-oclta-white hover:bg-transparent dark:hover:bg-transparent hover:text-oclta-black dark:hover:text-oclta-white transition-all duration-300 ease-out overflow-hidden w-full sm:w-auto"
                 >
                   <span className="relative z-10 flex items-center justify-center gap-2">
                     Start request
@@ -969,7 +969,7 @@ export default function JoinPage() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                     </svg>
                   </span>
-                  <span className="absolute inset-0 bg-oclta-white transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+                  <span className="absolute inset-0 bg-oclta-white dark:bg-oclta-black transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
                 </button>
               </div>
             ) : currentStep < STEPS.length - 1 ? (
@@ -995,7 +995,7 @@ export default function JoinPage() {
 
       {/* Powered by OCLTA - Bottom */}
       <div className="flex justify-center py-4">
-        <span className="text-[8px] text-gray-500 font-mono">Powered by OCLTA</span>
+        <span className="text-[8px] text-gray-500 dark:text-gray-400 font-mono">Powered by OCLTA</span>
       </div>
       </div>
     </div>

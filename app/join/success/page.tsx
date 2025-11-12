@@ -3,11 +3,11 @@
 export default function SuccessPage() {
 
   return (
-    <div className="min-h-screen bg-oclta-white flex flex-col">
+    <div className="min-h-screen bg-oclta-white dark:bg-oclta-black flex flex-col">
       {/* Back Arrow */}
       <a 
         href="https://group.oclta.com/login"
-        className="absolute top-4 left-8 text-oclta-black hover:text-gray-600 transition-colors"
+        className="absolute top-4 left-8 text-oclta-black dark:text-oclta-white hover:text-gray-600 dark:hover:text-gray-400 transition-colors"
         style={{ 
           fontFamily: 'monospace',
           fontSize: '18px',
@@ -22,7 +22,7 @@ export default function SuccessPage() {
       {/* OCLTA Logo */}
       <a 
         href="https://oclta.com"
-        className="absolute top-4 right-8 oclta-title text-oclta-black hover:text-gray-600 transition-colors"
+        className="absolute top-4 right-8 oclta-title text-oclta-black dark:text-oclta-white hover:text-gray-600 dark:hover:text-gray-400 transition-colors"
       >
         OCLTA
       </a>
@@ -31,11 +31,11 @@ export default function SuccessPage() {
       <div className="max-w-2xl mx-auto px-4 sm:px-6 py-8 pt-16 flex-1 flex flex-col justify-center">
         {/* Success Message */}
         <div className="text-center">
-          <h1 className="text-xl sm:text-2xl font-medium mb-4 text-oclta-black">
+          <h1 className="text-xl sm:text-2xl font-medium mb-4 text-oclta-black dark:text-oclta-white">
             You're on the waitlist
           </h1>
           
-          <p className="text-sm text-gray-600 mb-12">
+          <p className="text-sm text-gray-600 dark:text-gray-400 mb-12">
             We'll reach out as soon as access is ready.
           </p>
 
@@ -51,7 +51,7 @@ export default function SuccessPage() {
 
       {/* Footer */}
       <div className="flex justify-center py-4">
-        <div className="text-[8px] text-gray-500 font-mono">
+        <div className="text-[8px] text-gray-500 dark:text-gray-400 font-mono">
           Powered by OCLTA
         </div>
       </div>
