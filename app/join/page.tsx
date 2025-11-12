@@ -755,7 +755,7 @@ export default function JoinPage() {
         <img 
           src="/logos/background.png"
           alt=""
-          className="absolute inset-0 w-full h-full object-cover opacity-10"
+          className="absolute inset-0 w-full h-full object-cover opacity-100"
         />
       </div>
 
