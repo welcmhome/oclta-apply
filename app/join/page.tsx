@@ -750,7 +750,7 @@ export default function JoinPage() {
 
   return (
     <div 
-      className="min-h-screen bg-oclta-white dark:bg-oclta-black flex flex-col relative oclta-background"
+      className="min-h-screen bg-oclta-white dark:bg-transparent flex flex-col relative oclta-background"
     >
       {/* Content Layer */}
       <div className="relative z-10">

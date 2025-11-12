@@ -134,10 +134,12 @@
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
+  opacity: 1;
 }
 
 @media (prefers-color-scheme: dark) {
   .oclta-background {
     background-image: url('/logos/background-dark.png');
+    opacity: 1;
   }
 }
