@@ -73,7 +73,7 @@ function IntroScreen() {
       {/* Dictionary-style header */}
       <div className="intro-fade-in">
         <div className="flex items-baseline gap-3 mb-2">
-          <h1 className="text-xl sm:text-2xl font-medium text-oclta-black">
+          <h1 className="text-lg sm:text-xl font-medium text-oclta-black">
             OCLTA GRP /əˈkʌl.tə/
           </h1>
           <button
@@ -100,12 +100,12 @@ function IntroScreen() {
             </svg>
           </button>
         </div>
-        <p className="text-xs text-gray-500 mb-4">noun</p>
+        <p className="text-[10px] text-gray-500 mb-4">noun</p>
         <div className="space-y-3">
-          <p className="text-sm sm:text-base text-oclta-black leading-relaxed font-light">
+          <p className="text-xs sm:text-sm text-oclta-black leading-relaxed font-light">
             a curated, members-first group built around the pursuit for better.
           </p>
-          <p className="text-sm sm:text-base text-gray-700 leading-relaxed font-light">
+          <p className="text-xs sm:text-sm text-gray-700 leading-relaxed font-light">
             Members gain access to curated experiences and resources. These include Sessions, Projects, and Blitzes.
           </p>
         </div>
@@ -115,24 +115,24 @@ function IntroScreen() {
       <div className="pt-8 border-t border-gray-200 space-y-6 sm:space-y-8">
         {/* Project */}
         <div className="intro-fade-in-delay-1">
-          <h2 className="text-base sm:text-lg font-medium text-oclta-black mb-1.5">Project</h2>
-          <p className="text-sm sm:text-base text-gray-700 leading-relaxed font-light">
+          <h2 className="text-sm sm:text-base font-medium text-oclta-black mb-1.5">Project</h2>
+          <p className="text-xs sm:text-sm text-gray-700 leading-relaxed font-light">
             local events created to bring members together through purpose and connection
           </p>
         </div>
 
         {/* Blitz */}
         <div className="intro-fade-in-delay-2">
-          <h2 className="text-base sm:text-lg font-medium text-oclta-black mb-1.5">Blitz</h2>
-          <p className="text-sm sm:text-base text-gray-700 leading-relaxed font-light">
+          <h2 className="text-sm sm:text-base font-medium text-oclta-black mb-1.5">Blitz</h2>
+          <p className="text-xs sm:text-sm text-gray-700 leading-relaxed font-light">
             a nomadic travel experience centered on focus and execution, built around an intense period of work and growth
           </p>
         </div>
 
         {/* Session */}
         <div className="intro-fade-in-delay-3">
-          <h2 className="text-base sm:text-lg font-medium text-oclta-black mb-1.5">Session</h2>
-          <p className="text-sm sm:text-base text-gray-700 leading-relaxed font-light">
+          <h2 className="text-sm sm:text-base font-medium text-oclta-black mb-1.5">Session</h2>
+          <p className="text-xs sm:text-sm text-gray-700 leading-relaxed font-light">
             a creative experience showcasing art, sound, and design
           </p>
         </div>
@@ -140,7 +140,7 @@ function IntroScreen() {
 
       {/* Footer text */}
       <div className="pt-8 border-t border-gray-200 intro-fade-in-delay-4">
-        <p className="text-xs sm:text-sm text-gray-700 leading-relaxed font-light">
+        <p className="text-[10px] sm:text-xs text-gray-700 leading-relaxed font-light">
           By starting the application, you are requesting access to OCLTA GRP, a space defined by intention and discipline.
         </p>
       </div>
