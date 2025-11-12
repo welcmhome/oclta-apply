@@ -912,9 +912,15 @@ export default function JoinPage() {
               <div className="w-full flex justify-center pt-8">
                 <button
                   onClick={nextStep}
-                  className="btn-primary w-full sm:w-auto px-12 py-4 text-base font-medium"
+                  className="group relative bg-oclta-black text-oclta-white px-12 py-4 text-base font-medium border border-oclta-black hover:bg-transparent hover:text-oclta-black transition-all duration-300 ease-out overflow-hidden w-full sm:w-auto"
                 >
-                  Start request
+                  <span className="relative z-10 flex items-center justify-center gap-2">
+                    Start request
+                    <svg className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </span>
+                  <span className="absolute inset-0 bg-oclta-white transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
                 </button>
               </div>
             ) : currentStep < STEPS.length - 1 ? (
@@ -955,9 +961,15 @@ export default function JoinPage() {
               <div className="w-full flex justify-center pt-8">
                 <button
                   onClick={nextStep}
-                  className="btn-primary w-full sm:w-auto px-12 py-4 text-base font-medium"
+                  className="group relative bg-oclta-black text-oclta-white px-12 py-4 text-base font-medium border border-oclta-black hover:bg-transparent hover:text-oclta-black transition-all duration-300 ease-out overflow-hidden w-full sm:w-auto"
                 >
-                  Start request
+                  <span className="relative z-10 flex items-center justify-center gap-2">
+                    Start request
+                    <svg className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </span>
+                  <span className="absolute inset-0 bg-oclta-white transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
                 </button>
               </div>
             ) : currentStep < STEPS.length - 1 ? (
