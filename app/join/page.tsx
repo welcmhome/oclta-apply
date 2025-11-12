@@ -909,7 +909,7 @@ export default function JoinPage() {
             )}
 
             {currentStep === 0 ? (
-              <div className="w-full flex justify-center pt-8">
+              <div className="w-full flex justify-center pt-8 intro-fade-in-delay-5">
                 <button
                   onClick={nextStep}
                   className="group relative bg-oclta-black text-oclta-white px-12 py-4 text-base font-medium border border-oclta-black hover:bg-transparent hover:text-oclta-black transition-all duration-300 ease-out overflow-hidden w-full sm:w-auto"
@@ -958,7 +958,7 @@ export default function JoinPage() {
             )}
 
             {currentStep === 0 ? (
-              <div className="w-full flex justify-center pt-8">
+              <div className="w-full flex justify-center pt-8 intro-fade-in-delay-5">
                 <button
                   onClick={nextStep}
                   className="group relative bg-oclta-black text-oclta-white px-12 py-4 text-base font-medium border border-oclta-black hover:bg-transparent hover:text-oclta-black transition-all duration-300 ease-out overflow-hidden w-full sm:w-auto"
