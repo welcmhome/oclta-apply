@@ -749,16 +749,16 @@ export default function JoinPage() {
   }
 
   return (
-    <div className="min-h-screen bg-oclta-white flex flex-col relative">
-      {/* Background Logos */}
-      <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-        <img 
-          src="/logos/background.png"
-          alt=""
-          className="absolute inset-0 w-full h-full object-cover opacity-100"
-        />
-      </div>
-
+    <div 
+      className="min-h-screen bg-oclta-white flex flex-col relative"
+      style={{
+        backgroundImage: 'url(/logos/background.png)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        backgroundAttachment: 'fixed'
+      }}
+    >
       {/* Content Layer */}
       <div className="relative z-10">
       {/* Back Arrow - Top Left */}
