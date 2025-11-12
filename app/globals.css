@@ -125,18 +125,19 @@
     animation: fadeIn 1s ease-out 1.0s forwards;
     opacity: 0;
   }
+}
 
+/* Background images - outside layer for proper media query support */
+.oclta-background {
+  background-image: url('/logos/background.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+@media (prefers-color-scheme: dark) {
   .oclta-background {
-    background-image: url('/logos/background.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-  }
-
-  @media (prefers-color-scheme: dark) {
-    .oclta-background {
-      background-image: url('/logos/background-dark.png');
-    }
+    background-image: url('/logos/background-dark.png');
   }
 }
