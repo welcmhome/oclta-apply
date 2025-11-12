@@ -750,14 +750,7 @@ export default function JoinPage() {
 
   return (
     <div 
-      className="min-h-screen bg-oclta-white dark:bg-oclta-black flex flex-col relative"
-      style={{
-        backgroundImage: 'url(/logos/background.png)',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat',
-        backgroundAttachment: 'fixed'
-      }}
+      className="min-h-screen bg-oclta-white dark:bg-oclta-black flex flex-col relative oclta-background"
     >
       {/* Content Layer */}
       <div className="relative z-10">
